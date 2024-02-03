@@ -21,7 +21,7 @@ module "virtual_machine" {
 
   network_interfaces = {
     private = {
-      name = "private"
+      name = local.network_interface_name
       ip_configurations = {
         private = {
           name                          = "private"
