@@ -88,10 +88,10 @@ The following files demonstrate how to use the Azure Verified Modules for Terraf
 
 ### Create variables
 
-1. Create a new file called `terraform.tfvars` and add the following code to it:
+1. Create a new file called `terraform.tfvars` and add the following code to it, envuring you replace the placeholder for a valid Azure location of your choice (e.g. uksouth):
 
 ```hcl
-location               = "<a valid azure location of your choice>"
+location               = "<azure location>"
 address_space_start_ip = "10.0.0.0"
 address_space_size     = 16
 subnets_and_sizes = {
