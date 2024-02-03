@@ -51,8 +51,8 @@ This sample deploys the following features:
 
 * HashiCorp Terraform CLI: [Download](https://www.terraform.io/downloads)
 * Visual Studio Code: [Download](https://code.visualstudio.com/)
-  * Azure Terraform Extension for Visual Studio Code: [Download](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azureterraform)
-  * HashiCorp Terraform Extension for Visual Studio Code: [Download](https://marketplace.visualstudio.com/items?itemName=HashiCorp.terraform)
+  * Azure Terraform Extension for Visual Studio Code: [Install](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azureterraform)
+  * HashiCorp Terraform Extension for Visual Studio Code: [Install](https://marketplace.visualstudio.com/items?itemName=HashiCorp.terraform)
 * Azure CLI: [Download](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-windows?tabs=azure-cli#install-or-update)
 * An Azure Subscription: [Free Account](https://azure.microsoft.com/en-gb/free/search/)
 
@@ -68,13 +68,13 @@ We have prepped some files for you to use that configure variables, outputs, pro
 
 1. Create a new folder for the lab.
 1. Open Visual Studio Code and open the new folder. Hint: `code .`
-1. Create a new file called `terraform.tf` and add copy the code from [terraform.tf](terraform.tf) into it.
-1. Create a new file called `main.tf` and add copy the code from [main.tf](main.tf) into it.
-1. Create a new file called `variables.tf` and add copy the code from [variables.tf](variables.tf) into it.
-1. Create a new file called `outputs.tf` and add copy the code from [outputs.tf](outputs.tf) into it.
-1. Create a new file called `locals.tf` and add copy the code from [locals.tf](locals.tf) into it.
-1. Create a new file called `data.tf` and add copy the code from [data.tf](data.tf) into it.
-1. Create a new file called `non.avm.tf` and add copy the code from [non.avm.tf](non.avm.tf) into it.
+1. Create a new file called `terraform.tf` and copy the code from [terraform.tf](terraform.tf) into it.
+1. Create a new file called `main.tf` and copy the code from [main.tf](main.tf) into it.
+1. Create a new file called `variables.tf` and copy the code from [variables.tf](variables.tf) into it.
+1. Create a new file called `outputs.tf` and copy the code from [outputs.tf](outputs.tf) into it.
+1. Create a new file called `locals.tf` and copy the code from [locals.tf](locals.tf) into it.
+1. Create a new file called `data.tf` and copy the code from [data.tf](data.tf) into it.
+1. Create a new file called `non.avm.tf` and copy the code from [non.avm.tf](non.avm.tf) into it.
 
 ### Add the AVM references
 
