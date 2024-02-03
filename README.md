@@ -133,9 +133,18 @@ subnets_and_sizes = {
 1. Run `echo "hello world" > hello.txt` to create a file with some content.
 1. Run `az storage blob upload --account-name <storage-account-name> --container-name demo --file hello.txt --name hello.txt --auth-mode login` to upload the file to the storage account.
 1. Run `az storage blob list --account-name <storage-account-name> --container-name demo --auth-mode login` to list the blobs in the container.
-1. Run `az storage blob show --account-name <storage-account-name> --container-name demo --name hello.txt --auth-mode login` to show the details of the blob.
 1. Run `az storage blob download --account-name <storage-account-name> --container-name demo --name hello.txt --file hello2.txt --auth-mode login` to download the blob to a new file.
 1. Run `cat hello2.txt` to view the contents of the downloaded file.
+
+Here are the commands to run, so you can copy to notepad and replace the placeholder with the storage account name you created in the lab. Then run the commands in the terminal:
+
+```bash
+echo "hello world" > hello.txt`
+az storage blob upload --account-name replace_me --container-name demo --file hello.txt --name hello.txt --auth-mode login
+az storage blob list --account-name replace_me --container-name demo --auth-mode login
+az storage blob download --account-name replace_me --container-name demo --name hello.txt --file hello2.txt --auth-mode login
+cat hello2.txt
+```
 
 ### Clean up
 
