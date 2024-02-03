@@ -86,6 +86,21 @@ The following files demonstrate how to use the Azure Verified Modules for Terraf
 1. Create a new file called `avm.virtual_machine.tf` and copy the code from [avm.virtual_machine.tf](avm.virtual_machine.tf) into it.
 1. Create a new file called `avm.role_assignments.tf` and copy the code from [avm.role_assignments.tf](avm.role_assignments.tf) into it.
 
+### Create variables
+
+1. Create a new file called `terraform.tfvars` and add the following code to it:
+
+```hcl
+location               = "<a valid azure location of your choice>"
+address_space_start_ip = "10.0.0.0"
+address_space_size     = 16
+subnets_and_sizes = {
+  AzureBastionSubnet = 24
+  private_endpoints  = 28
+  virtual_machines   = 24
+}
+```
+
 ### Apply the Terraform configuration
 
 1. Open a terminal in Visual Studio Code.
