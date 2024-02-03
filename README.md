@@ -1,12 +1,12 @@
 ---
 page_type: sample
 languages:
-* terraform
-* hcl
+- terraform
+- hcl
 name: Introduction to using Azure Verified Modules for Terraform
 description: A walk through lab demonstrating how to use the Azure Verified Modules for Terraform.
 products:
-* azure
+- azure
 urlFragment: avm-terraform-labs
 ---
 
