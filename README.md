@@ -64,10 +64,23 @@ The instructions for this sample are in the form of a Lab. Follow along with the
 
 ### Create the Root Module
 
+We have prepped some files for you to use that configure variables, outputs, providers, etc. Review each file as you create it to understand what it does.
+
 1. Create a new folder for the lab.
 1. Open Visual Studio Code and open the new folder. Hint: `code .`
 1. Create a new file called `terraform.tf` and add copy the code from [terraform.tf](terraform.tf) into it.
 1. Create a new file called `main.tf` and add copy the code from [main.tf](main.tf) into it.
+1. Create a new file called `variables.tf` and add copy the code from [variables.tf](variables.tf) into it.
+1. Create a new file called `outputs.tf` and add copy the code from [outputs.tf](outputs.tf) into it.
+1. Create a new file called `locals.tf` and add copy the code from [locals.tf](locals.tf) into it.
+1. Create a new file called `data.tf` and add copy the code from [data.tf](data.tf) into it.
+1. Create a new file called `main.non.avm.tf` and add copy the code from [main.non.avm.tf](main.non.avm.tf) into it.
+
+### Add the AVM references
+
+1. Create a new file called `main.avm.tf`.
+1. Add the following code for the Virtual Network module:
+TODO...
 
 ### Connect to the VM via Bastion
 
@@ -83,18 +96,16 @@ The instructions for this sample are in the form of a Lab. Follow along with the
 
 ### Install the Azure CLI and login
 1. Run `curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash` to install the Azure CLI.
-1. Run `az login` to login to your Azure subscription.
-1. Follow the prompt to use the device code flow. WARNING!!!: Do not use <key>Ctrl+C</key> to copy as it will cancel the login process.
-1. Once logged in, run `az account show` to check you are connected to the correct subscription. If not, run `az account set --subscription <subscription-id>` to change to the correct subscription.
+1. Run `az login --identity` to login with the system assigned managed identity.
 
 ### Create a blob in the storage account
 1. Run `echo "hello world" > hello.txt` to create a file with some content.
 1. Run `az storage blob upload --account-name <storage-account-name> --container-name demo --file hello.txt --name hello.txt --auth-mode login` to upload the file to the storage account.
-
+1. Run `az storage blob list --account-name <storage-account-name> --container-name demo --auth-mode login` to list the blobs in the container.
+1. Run `az storage blob show --account-name <storage-account-name> --container-name demo --name hello.txt --auth-mode login` to show the details of the blob.
+1. Run `az storage blob download --account-name <storage-account-name> --container-name demo --name hello.txt --file hello2.txt --auth-mode login` to download the blob to a new file.
+1. Run `cat hello2.txt` to view the contents of the downloaded file.
 
 ## Resources
 
-- [Terraform Steps for Azure DevOps](https://github.com/microsoft/azure-pipelines-terraform/blob/main/Tasks/TerraformTask/TerraformTaskV4/README.md))
-- [Terraform azurerm provider OIDC configuration](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/guides/service_principal_oidc)
-- [Azure DevOps OIDC Docs](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-cloud-providers)
-- [Azure External Identity Docs](https://learn.microsoft.com/en-us/azure/active-directory/develop/workload-identity-federation-create-trust?pivots=identity-wif-apps-methods-azp)
+- AVM Documentation: [Azure Verified Modules](https://aka.ms/avm)

@@ -1,19 +1,19 @@
 variable "location" {
-  type       = string
+  type        = string
   description = "The location/region where the resources will be created"
 }
 
 variable "address_space_start_ip" {
-  type = string
+  type        = string
   description = "The address space that is used the virtual network"
 }
 
 variable "address_space_size" {
-  type = number
+  type        = number
   description = "The address space that is used the virtual network"
 }
 
 variable "subnets_and_sizes" {
-  type = map(number)
+  type        = map(number)
   description = "The size of the subnets"
 }

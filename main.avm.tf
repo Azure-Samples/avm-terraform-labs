@@ -1,16 +1,16 @@
 module "virtual_network" {
-  source              = "Azure/avm-res-network-virtualnetwork/azurerm"
-  version = "~> 0.1"
-  resource_group_name = azurerm_resource_group.this.name
-  subnets = local.subnets
+  source                        = "Azure/avm-res-network-virtualnetwork/azurerm"
+  version                       = "~> 0.1"
+  resource_group_name           = azurerm_resource_group.this.name
+  subnets                       = local.subnets
   virtual_network_address_space = [local.virtual_network_address_space]
   vnet_location                 = var.location
   vnet_name                     = local.virtual_network_name
 }
 
 module "key_vault" {
-  source = "Azure/avm-res-keyvault-vault/azurerm"
-  version = "~> 0.5"
+  source                        = "Azure/avm-res-keyvault-vault/azurerm"
+  version                       = "~> 0.5"
   name                          = local.key_vault_name
   location                      = azurerm_resource_group.this.location
   resource_group_name           = azurerm_resource_group.this.name
@@ -53,14 +53,14 @@ module "key_vault" {
     create = "60s"
   }
   network_acls = {
-    bypass = "AzureServices"
-    ip_rules = [ "${data.http.ip.response_body}/32" ]
+    bypass   = "AzureServices"
+    ip_rules = ["${data.http.ip.response_body}/32"]
   }
 }
 
 module "storage_account" {
-  source = "Azure/avm-res-storage-storageaccount/azurerm"
-  version = "~> 0.1"
+  source                            = "Azure/avm-res-storage-storageaccount/azurerm"
+  version                           = "~> 0.1"
   account_replication_type          = "LRS"
   location                          = azurerm_resource_group.this.location
   name                              = local.storage_account_name
@@ -85,13 +85,13 @@ module "storage_account" {
     primary = {
       private_dns_zone_resource_ids = [azurerm_private_dns_zone.storage_account.id]
       subnet_resource_id            = module.virtual_network.subnets["private_endpoints"].id
-      subresource_name             = ["blob"]
+      subresource_name              = ["blob"]
     }
   }
 }
 
 module "virtual_machine" {
-  source = "Azure/avm-res-compute-virtualmachine/azurerm"
+  source  = "Azure/avm-res-compute-virtualmachine/azurerm"
   version = "~> 0.4"
 
   resource_group_name                    = azurerm_resource_group.this.name
@@ -99,6 +99,10 @@ module "virtual_machine" {
   name                                   = local.virtual_machine_name
   admin_credential_key_vault_resource_id = module.key_vault.resource.id
   virtualmachine_sku_size                = "Standard_B1s"
+
+  managed_identities = {
+    system_assigned = true
+  }
 
   source_image_reference = {
     publisher = "Canonical"
@@ -118,5 +122,32 @@ module "virtual_machine" {
       }
     }
   }
-  depends_on = [ module.key_vault ]
+  depends_on = [module.key_vault]
+}
+
+module "avm-res-authorization-roleassignment" {
+  source  = "Azure/avm-res-authorization-roleassignment/azurerm"
+  version = "~> 0.0"
+
+  system_assigned_managed_identities_by_principal_id = {
+    virtual_machine = module.virtual_machine.virtual_machine_azurerm.identity[0].principal_id
+  }
+
+  role_definitions = {
+    storage_blob_data_contributor = "Storage Blob Data Contributor"
+  }
+
+  role_assignments_for_scopes = {
+    storage_container = {
+      scope = module.storage_account.containers["demo"].id
+      role_assignments = {
+        contributor = {
+          role_definition                    = "storage_blob_data_contributor"
+          system_assigned_managed_identities = ["virtual_machine"]
+        }
+      }
+    }
+  }
+
+  depends_on = [module.storage_account, module.virtual_machine]
 }
