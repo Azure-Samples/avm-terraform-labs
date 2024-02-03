@@ -1,12 +1,12 @@
 ---
 page_type: sample
 languages:
-- terraform
-- hcl
+* terraform
+* hcl
 name: Introduction to using Azure Verified Modules for Terraform
 description: A walk through lab demonstrating how to use the Azure Verified Modules for Terraform.
 products:
-- azure
+* azure
 urlFragment: avm-terraform-labs
 ---
 
@@ -21,8 +21,8 @@ This is a lab based sample that demonstrates how to use the Azure Verified Modul
 | `data.tf` | Terraform read-only resources. |
 | `locals.tf` | Terraform locals and calculations. |
 | `main.tf` | Terraform core resources. |
-| `main.avm.tf` | Terraform AVM modules declarations. |
-| `main.non.avm.tf` | Terraform resources the are not supported by AVM yet. |
+| `avm.*.tf` | Terraform AVM modules declarations. |
+| `non.avm.tf` | Terraform resources the are not supported by AVM yet. |
 | `variables.tf` | Terraform inputs. |
 | `outputs.tf` | Terraform outputs. |
 | `terraform.tf` | Terraform provider declarations. |
@@ -49,12 +49,12 @@ This sample deploys the following features:
 
 ### Prerequisites
 
-- HashiCorp Terraform CLI: [Download](https://www.terraform.io/downloads)
-- Visual Studio Code: [Download](https://code.visualstudio.com/)
-- Azure Terraform Extensiong for Visual Studio Code: [Download](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azureterraform)
-- HashiCorp Terraform Extension for Visual Studio Code: [Download](https://marketplace.visualstudio.com/items?itemName=HashiCorp.terraform)
-- Azure CLI: [Download](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-windows?tabs=azure-cli#install-or-update)
-- An Azure Subscription: [Free Account](https://azure.microsoft.com/en-gb/free/search/)
+* HashiCorp Terraform CLI: [Download](https://www.terraform.io/downloads)
+* Visual Studio Code: [Download](https://code.visualstudio.com/)
+* Azure Terraform Extensiong for Visual Studio Code: [Download](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azureterraform)
+* HashiCorp Terraform Extension for Visual Studio Code: [Download](https://marketplace.visualstudio.com/items?itemName=HashiCorp.terraform)
+* Azure CLI: [Download](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-windows?tabs=azure-cli#install-or-update)
+* An Azure Subscription: [Free Account](https://azure.microsoft.com/en-gb/free/search/)
 
 ### Quickstart
 
@@ -74,13 +74,27 @@ We have prepped some files for you to use that configure variables, outputs, pro
 1. Create a new file called `outputs.tf` and add copy the code from [outputs.tf](outputs.tf) into it.
 1. Create a new file called `locals.tf` and add copy the code from [locals.tf](locals.tf) into it.
 1. Create a new file called `data.tf` and add copy the code from [data.tf](data.tf) into it.
-1. Create a new file called `main.non.avm.tf` and add copy the code from [main.non.avm.tf](main.non.avm.tf) into it.
+1. Create a new file called `non.avm.tf` and add copy the code from [non.avm.tf](non.avm.tf) into it.
 
 ### Add the AVM references
 
-1. Create a new file called `main.avm.tf`.
-1. Add the following code for the Virtual Network module:
-TODO...
+The following files demonstrate how to use the Azure Verified Modules for Terraform.
+
+1. Create a new file called `avm.virtual_network.tf` and copy the code from [avm.virtual_network.tf](avm.virtual_network.tf) into it.
+1. Create a new file called `avm.key_vault.tf` and copy the code from [avm.key_vault.tf](avm.key_vault.tf) into it.
+1. Create a new file called `avm.storage_account.tf` and copy the code from [avm.storage_account.tf](avm.storage_account.tf) into it.
+1. Create a new file called `avm.virtual_machine.tf` and copy the code from [avm.virtual_machine.tf](avm.virtual_machine.tf) into it.
+1. Create a new file called `avm.role_assignments.tf` and copy the code from [avm.role_assignments.tf](avm.role_assignments.tf) into it.
+
+### Apply the Terraform configuration
+
+1. Open a terminal in Visual Studio Code.
+1. Run `az login` to login to your Azure subscription.
+1. Run `az account show` to show the current subscription. Run `az account set --subscription <subscription-id>` to set the subscription if it is not the one you want to use.
+1. Run `terraform init` to initialize the Terraform configuration.
+1. Run `terraform plan -out tfplan` to see what resources will be created.
+1. Run `terraform apply tfplan` to create the resources.
+1. Navigate to the Azure Portal and review the resources that have been created.
 
 ### Connect to the VM via Bastion
 
@@ -95,10 +109,12 @@ TODO...
 1. A new browser window will open with a terminal session to the VM.
 
 ### Install the Azure CLI and login
+
 1. Run `curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash` to install the Azure CLI.
 1. Run `az login --identity` to login with the system assigned managed identity.
 
 ### Create a blob in the storage account
+
 1. Run `echo "hello world" > hello.txt` to create a file with some content.
 1. Run `az storage blob upload --account-name <storage-account-name> --container-name demo --file hello.txt --name hello.txt --auth-mode login` to upload the file to the storage account.
 1. Run `az storage blob list --account-name <storage-account-name> --container-name demo --auth-mode login` to list the blobs in the container.
@@ -106,6 +122,10 @@ TODO...
 1. Run `az storage blob download --account-name <storage-account-name> --container-name demo --name hello.txt --file hello2.txt --auth-mode login` to download the blob to a new file.
 1. Run `cat hello2.txt` to view the contents of the downloaded file.
 
+### Clean up
+
+1. Run `terraform destroy` from the Visual Studio Code terminal to remove the resources created by Terraform.
+
 ## Resources
 
-- AVM Documentation: [Azure Verified Modules](https://aka.ms/avm)
+* AVM Documentation: [Azure Verified Modules](https://aka.ms/avm)
