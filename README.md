@@ -107,8 +107,8 @@ subnets_and_sizes = {
 1. Run `az login` to login to your Azure subscription.
 1. Run `az account show` to show the current subscription. Run `az account set --subscription <subscription-id>` to set the subscription if it is not the one you want to use.
 1. Run `terraform init` to initialize the Terraform configuration.
-1. Run `terraform plan -out tfplan` to see what resources will be created.
-1. Run `terraform apply tfplan` to create the resources.
+1. Run `terraform plan -out tfplan` to see what resources will be created and create a plan file.
+1. Run `terraform apply tfplan` to create the resources based on the plan file.
 1. Navigate to the Azure Portal and review the resources that have been created.
 
 ### Connect to the VM via Bastion
