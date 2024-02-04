@@ -195,7 +195,7 @@ We are going to create a blob in the storage account using the Azure CLI form th
 Here are the commands to run, so you can copy to notepad and replace the placeholder with the storage account name you created in the lab. Then run the commands in the terminal:
 
 ```bash
-echo "hello world" > hello.txt`
+echo "hello world" > hello.txt
 az storage blob upload --account-name replace_me --container-name demo --file hello.txt --name hello.txt --auth-mode login
 az storage blob list --account-name replace_me --container-name demo --auth-mode login
 az storage blob download --account-name replace_me --container-name demo --name hello.txt --file hello2.txt --auth-mode login
