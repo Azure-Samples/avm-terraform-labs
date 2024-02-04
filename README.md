@@ -154,10 +154,10 @@ In this part we are going to add a Virtual Machine to our Terraform configuratio
 
 1. Copy the files from the [part 5](labs/part05-vm/) folder into the `avm-lab` folder, replacing the existing files when prompted.
 1. Run `terraform init -upgrade` to install the AVM modules for Virtual Machine and Role Assignments.
+1. Apply the changes with Terraform. NOTE: We are applying this now, because the bastion can take a few minutes to deploy.
 1. Navigate to the `Source Control` tab in Visual Studio Code and review the changes to the files.
 1. Open the `avm.virtual-machine.tf` file and look at each of the properties, paying close attention to the `admin_credential_key_vault_resource_id` and `network_interfaces` variables.
 1. Open the `avm.role-assignments.tf` file and look at each of the properties.
-1. Apply the changes with Terraform.
 1. Review the deployed resources in the Azure Portal.
 1. Commit the changes to git.
 
