@@ -83,7 +83,7 @@ In this part we are going to setup our Terraform root module and deploy an Azure
   }
   ```
 
-1. Open a terminal in Visual Studio Code and ensure you are in the root of your `avm-lab` folder.
+7. Open a terminal in Visual Studio Code and ensure you are in the root of your `avm-lab` folder.
 1. Run `az login` to login to your Azure subscription.
 1. Run `az account show` to show the current subscription. Run `az account set --subscription <subscription-id>` to set the subscription if it is not the one you want to use.
 1. Run `terraform init` to initialize the Terraform configuration.
@@ -116,10 +116,10 @@ In this part we are going to add a virtual network and subnets to our Terraform 
   }
   ```
 
-1. Run `terraform init -upgrade` to install the AVM module for Virtual Networks.
+3. Run `terraform init -upgrade` to install the AVM module for Virtual Networks.
 1. Navigate to the `Source Control` tab in Visual Studio Code and review the changes to the files.
 1. Open the `avm.virtual-network.tf` file and look at each of the properties, paying close attention to the `source` and `version` properties.
-1. Apply the changes with Terraform.
+1. Apply the changes with Terraform. Hint: `terraform apply -auto-approve`.
 1. Review the deployed resources in the Azure Portal.
 1. Commit the changes to git.
 
