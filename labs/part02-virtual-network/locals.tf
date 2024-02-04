@@ -2,9 +2,9 @@
 locals {
   unique_postfix = random_pet.unique_name.id
 
-  resource_group_name                 = "rg-demo-${local.unique_postfix}"
-  virtual_network_name                = "vnet-demo-${local.unique_postfix}"
-  network_security_group_name         = "nsg-demo-${local.unique_postfix}"
+  resource_group_name         = "rg-demo-${local.unique_postfix}"
+  virtual_network_name        = "vnet-demo-${local.unique_postfix}"
+  network_security_group_name = "nsg-demo-${local.unique_postfix}"
 }
 
 # Caluculate the CIDR for the subnets

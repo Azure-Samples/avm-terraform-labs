@@ -78,8 +78,8 @@ In this part we are going to setup our Terraform root module and deploy an Azure
   ```hcl
   location = "<azure region>"
   tags = {
-    "type" = "avm"
-    "env" = "demo"
+    type = "avm"
+    env  = "demo"
   }
   ```
 
@@ -111,8 +111,8 @@ In this part we are going to add a virtual network and subnets to our Terraform 
     virtual_machines   = 24
   }
   tags = {
-    "type" = "avm"
-    "env" = "demo"
+    type = "avm"
+    env  = "demo"
   }
   ```
 
