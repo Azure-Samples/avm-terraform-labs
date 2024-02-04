@@ -17,3 +17,8 @@ variable "subnets_and_sizes" {
   type        = map(number)
   description = "The size of the subnets"
 }
+
+variable "tags" {
+  type        = map(string)
+  description = "A map of tags to add to all resources"
+}
