@@ -78,6 +78,11 @@ In this part we are going to setup our Terraform root module and deploy an Azure
 1. Create a new folder under your lab folder called `avm-lab`.
 1. Copy the files from the [part 1](labs/part01-base/) folder into the `avm-lab` folder.
 
+```powershell
+# Run from the avm-lab folder
+copy ../avm-terraform-labs/labs/part01-base/* .
+```
+
 Your file structure should look like this:
   
   ```plaintext
@@ -123,6 +128,11 @@ In this part we are going to add a virtual network and subnets to our Terraform 
 >IMPORTANT: This lab is incremental, you must not delete any files from the previous lab (especially the `terraform.tfstate` file). You must copy the files from the next lab into the `avm-lab` folder and only replace the existing files when prompted.
 
 1. Copy the files from the [part 2](labs/part02-vnet/) folder into the `avm-lab` folder. This will add some new files and replace some files.
+
+```powershell
+# Run from the avm-lab folder
+copy ../avm-terraform-labs/labs/part02-virtual-network/* .
+```
 
 Your file structure should now look like this if you have followed the instructions correctly (this structure will continue to grow as you progress through the lab):
   
@@ -175,7 +185,13 @@ Your file structure should now look like this if you have followed the instructi
 In this part we are going to add a Key Vault to our Terraform configuration by leveraging the Azure Verified Module for Key Vault. The Key Vault is going to be used to store the customer managed key for our storage account and the SSH private key for our virtual machine.
 
 1. Copy the files from the [part 3](labs/part03-keyvault/) folder into the `avm-lab` folder, remembering to retain the existing files and just add an overwrite when prompted.
-1. Run `terraform init -upgrade` to install the AVM module for Key Vault.
+
+```powershell
+# Run from the avm-lab folder
+copy ../avm-terraform-labs/labs/part03-key-vault/* .
+```
+
+2. Run `terraform init -upgrade` to install the AVM module for Key Vault.
 1. Navigate to the `Source Control` tab in Visual Studio Code and review the changes to the files.
 1. Open the `avm.key-vault.tf` file and look at each of the properties, paying close attention to the `private_endpoints` and `role_assigments` variables.
 1. Apply the changes with Terraform.
@@ -187,7 +203,13 @@ In this part we are going to add a Key Vault to our Terraform configuration by l
 In this part we are going to add a Storage Account to our Terraform configuration by leveraging the Azure Verified Module for Storage Account. The Storage Account is the main component of our demo lab and we will interact with it later on.
 
 1. Copy the files from the [part 4](labs/part04-storage-account/) folder into the `avm-lab` folder, remembering to retain the existing files and just add an overwrite when prompted.
-1. Run `terraform init -upgrade` to install the AVM module for Storage Account.
+
+```powershell
+# Run from the avm-lab folder
+copy ../avm-terraform-labs/labs/part04-storage-account/* .
+```
+
+2. Run `terraform init -upgrade` to install the AVM module for Storage Account.
 1. Navigate to the `Source Control` tab in Visual Studio Code and review the changes to the files.
 1. Open the `avm.storage-account.tf` file and look at each of the properties, paying close attention to the `managed_identities`, `customer_managed_key` and `containers` variables.
 1. Note in the source control diff that we are adding a key to the Key Vault using the AVM module and assigning permissions for the user assigned managed identity to access the key.
@@ -200,7 +222,13 @@ In this part we are going to add a Storage Account to our Terraform configuratio
 In this part we are going to add a Virtual Machine to our Terraform configuration by leveraging the Azure Verified Module for Virtual Machine. The Virtual Machine is going to be used to interact with the Storage Account later. We are also going to leverage the Role Assignments Azure Verified Module to assign permissions to the managed identity of the virtual machine to the storage account.
 
 1. Copy the files from the [part 5](labs/part05-vm/) folder into the `avm-lab` folder, remembering to retain the existing files and just add an overwrite when prompted.
-1. Run `terraform init -upgrade` to install the AVM modules for Virtual Machine and Role Assignments.
+
+```powershell
+# Run from the avm-lab folder
+copy ../avm-terraform-labs/labs/part05-virtual-machine/* .
+```
+
+2. Run `terraform init -upgrade` to install the AVM modules for Virtual Machine and Role Assignments.
 1. Apply the changes with Terraform. NOTE: We are applying this now, because the bastion can take a few minutes to deploy.
 1. Navigate to the `Source Control` tab in Visual Studio Code and review the changes to the files.
 1. Open the `avm.virtual-machine.tf` file and look at each of the properties, paying close attention to the `admin_credential_key_vault_resource_id` and `network_interfaces` variables.
