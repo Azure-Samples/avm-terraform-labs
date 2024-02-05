@@ -229,7 +229,7 @@ We are going to install the Azure CLI and login with the system assigned managed
 1. Run `curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash` to install the Azure CLI.
 1. Run `az login --identity` to login with the system assigned managed identity.
 
-### Create a blob in the storage account
+### Part 8 - Create a blob in the storage account
 
 We are going to create a blob in the storage account using the Azure CLI form the Azure Bastion SSH terminal.
 
