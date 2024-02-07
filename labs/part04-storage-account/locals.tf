@@ -5,7 +5,7 @@ locals {
   resource_group_name                 = "rg-demo-${local.unique_postfix}"
   virtual_network_name                = "vnet-demo-${local.unique_postfix}"
   network_security_group_name         = "nsg-demo-${local.unique_postfix}"
-  key_vault_name                      = "kv-demo-${local.unique_postfix}"
+  key_vault_name                      = "kv-demo-${format("%.16s", local.unique_postfix)}"
   storage_account_name                = replace("stdemo${local.unique_postfix}", "-", "")
   user_assigned_managed_identity_name = "uami-demo-${local.unique_postfix}"
 }
