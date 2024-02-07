@@ -42,7 +42,7 @@ This sample deploys the following features:
 
 ### Prerequisites
 
-* HashiCorp Terraform CLI: [Download](https://www.terraform.io/downloads)
+* HashiCorp Terraform CLI Version 1.7 or higher: [Download](https://www.terraform.io/downloads)
 * Git: [Download](https://git-scm.com/downloads)
 * Visual Studio Code: [Download](https://code.visualstudio.com/)
   * Azure Terraform Extension for Visual Studio Code: [Install](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azureterraform)
@@ -66,10 +66,10 @@ In this part we are going to get a local copy of the lab files for use in the re
 
 Your file structure should now look like this:
   
-  ```plaintext
-  📂my-lab-folder
-  ┗ 📂avm-terraform-labs
-  ```
+      ```plaintext
+      📂my-lab-folder
+      ┗ 📂avm-terraform-labs
+      ```
 
 ### Part 1 - Base files and resources
 
@@ -78,44 +78,61 @@ In this part we are going to setup our Terraform root module and deploy an Azure
 1. Create a new folder under your lab folder called `avm-lab`.
 1. Copy the files from the [part 1](labs/part01-base/) folder into the `avm-lab` folder.
 
-```powershell
-# Run from the avm-lab folder
-copy ../avm-terraform-labs/labs/part01-base/* .
-```
+      ```pwsh
+      # E.g. Using pwsh, run this from inside your top level lab folder
+      cd avm-lab
+      copy ./avm-terraform-labs/labs/part01-base/* .
+      ```
 
-Your file structure should look like this:
-  
-  ```plaintext
-  📂my-lab-folder
-  ┣ 📂avm-lab
-  ┃ ┣ 📜.gitignore
-  ┃ ┣ 📜locals.tf
-  ┃ ┣ 📜main.tf
-  ┃ ┣ 📜outputs.tf
-  ┃ ┣ 📜terraform.tf
-  ┃ ┗ 📜variables.tf
-  ┗ 📂avm-terraform-labs
-  ```
+      Your file structure should look like this:
 
-3. Open Visual Studio Code and open the `avm-lab` folder. Hint: `code .`
+      ```plaintext
+      📂my-lab-folder
+      ┣ 📂avm-lab
+      ┃ ┣ 📜.gitignore
+      ┃ ┣ 📜locals.tf
+      ┃ ┣ 📜main.tf
+      ┃ ┣ 📜outputs.tf
+      ┃ ┣ 📜terraform.tf
+      ┃ ┗ 📜variables.tf
+      ┗ 📂avm-terraform-labs
+      ```
+
+1. Open Visual Studio Code and open the `avm-lab` folder. Hint: `code .`
 1. Examine the `terraform` block in `terraform.tf` and note that we are referencing the `azurerm` and `random` providers.
 1. Examine the `locals.tf`, `variables.tf`, `outputs.tf` and `main.tf` files.
 1. Create a file called `terraform.tfvars` and add the following code to it, ensuring you replace the placeholder for a valid Azure location of your choice (e.g. uksouth):
 
-  ```hcl
-  location = "<azure region>"
-  tags = {
-    type = "avm"
-    env  = "demo"
-  }
-  ```
+      ```hcl
+      location = "<azure region>"
+      tags = {
+        type = "avm"
+        env  = "demo"
+      }
+      ```
 
-7. Open a terminal in Visual Studio Code and ensure you are in the root of your `avm-lab` folder.
+1. Open a terminal in Visual Studio Code and ensure you are in the root of your `avm-lab` folder.
 1. Run `az login` to login to your Azure subscription.
 1. Run `az account show` to show the current subscription. Run `az account set --subscription <subscription-id>` to set the subscription if it is not the one you want to use.
 1. Run `terraform init` to initialize the Terraform configuration.
 1. Run `terraform plan -out tfplan` to see what resources will be created and create a plan file.
 1. Run `terraform apply tfplan` to create the resources based on the plan file.
+1. If your run is successful, you will see:
+  
+      ```plaintext
+      Apply complete! Resources: 2 added, 0 changed, 0 destroyed.
+      ```
+
+1. Take note of the outputs from the `terraform apply` command, they should look like this:
+
+      ```plaintext
+      Outputs:
+
+      names = {
+        "resource_group_name" = "rg-demo-excited-eel"
+      }
+      ```
+
 1. Navigate to the Azure Portal and review the resources that have been created.
 1. Run `git init` to initialize a new git repository.
 1. Run `git add .` to stage the files.
@@ -129,53 +146,55 @@ In this part we are going to add a virtual network and subnets to our Terraform 
 
 1. Copy the files from the [part 2](labs/part02-vnet/) folder into the `avm-lab` folder. This will add some new files and replace some files.
 
-```powershell
-# Run from the avm-lab folder
-copy ../avm-terraform-labs/labs/part02-virtual-network/* .
-```
+      ```pwsh
+      # E.g. Using pwsh, run this from inside your top level lab folder
+      cd avm-lab
+      copy ../avm-terraform-labs/labs/part02-virtual-network/* .
+      ```
 
-Your file structure should now look like this if you have followed the instructions correctly (this structure will continue to grow as you progress through the lab):
-  
-  ```plaintext
-  📂my-lab-folder
-  ┣ 📂avm-lab
-  ┃ ┣ 📂.git (hidden)
-  ┃ ┣ 📂.terraform
-  ┃ ┣ 📜.gitignore
-  ┃ ┣ 📜.terraform.lock.hcl
-  ┃ ┣ 📜avm.virtual_network.tf
-  ┃ ┣ 📜locals.tf
-  ┃ ┣ 📜main.tf
-  ┃ ┣ 📜non.avm.network_security_group.tf
-  ┃ ┣ 📜outputs.tf
-  ┃ ┣ 📜terraform.tf
-  ┃ ┣ 📜terraform.tfstate
-  ┃ ┣ 📜terraform.tfvars
-  ┃ ┣ 📜tfplan
-  ┃ ┗ 📜variables.tf
-  ┗ 📂avm-terraform-labs
-  ```
+      Your file structure should now look like this if you have followed the instructions correctly (this structure will continue to grow as you progress through the lab):
 
-2. Open your `terraform.tfvars` and update it with the following code, ensuring you replace the placeholder for a valid Azure location of your choice (e.g. uksouth):
+      ```plaintext
+      📂my-lab-folder
+      ┣ 📂avm-lab
+      ┃ ┣ 📂.git (hidden)
+      ┃ ┣ 📂.terraform
+      ┃ ┣ 📜.gitignore
+      ┃ ┣ 📜.terraform.lock.hcl
+      ┃ ┣ 📜avm.virtual_network.tf
+      ┃ ┣ 📜locals.tf
+      ┃ ┣ 📜main.tf
+      ┃ ┣ 📜non.avm.network_security_group.tf
+      ┃ ┣ 📜outputs.tf
+      ┃ ┣ 📜terraform.tf
+      ┃ ┣ 📜terraform.tfstate
+      ┃ ┣ 📜terraform.tfvars
+      ┃ ┣ 📜tfplan
+      ┃ ┗ 📜variables.tf
+      ┗ 📂avm-terraform-labs
+      ```
 
-  ```hcl
-  location               = "<azure region>"
-  address_space_start_ip = "10.0.0.0"
-  address_space_size     = 16
-  subnets_and_sizes = {
-    AzureBastionSubnet = 24
-    private_endpoints  = 28
-    virtual_machines   = 24
-  }
-  tags = {
-    type = "avm"
-    env  = "demo"
-  }
-  ```
+1. Open your `terraform.tfvars` and update it with the following code, ensuring you replace the placeholder for a valid Azure location of your choice (e.g. uksouth):
 
-3. Run `terraform init -upgrade` to install the AVM module for Virtual Networks.
+      ```hcl
+      location               = "<azure region>"
+      address_space_start_ip = "10.0.0.0"
+      address_space_size     = 16
+      subnets_and_sizes = {
+        AzureBastionSubnet = 24
+        private_endpoints  = 28
+        virtual_machines   = 24
+      }
+      tags = {
+        type = "avm"
+        env  = "demo"
+      }
+      ```
+
+1. Run `terraform init -upgrade` to install the AVM module for Virtual Networks.
 1. Navigate to the `Source Control` tab in Visual Studio Code and review the changes to the files.
 1. Open the `avm.virtual-network.tf` file and look at each of the properties, paying close attention to the `source` and `version` properties.
+1. In order to find more detail about AVM modules, you can navigate to their documentation. For example, you can find the documentation for the Virtual Network module [here](https://registry.terraform.io/modules/Azure/avm-res-network-virtualnetwork/azurerm/latest). From there you can navigate to the source code and see the module's implementation [here](https://github.com/Azure/terraform-azurerm-avm-res-network-virtualnetwork).
 1. Apply the changes with Terraform. Hint: `terraform apply -auto-approve`.
 1. Review the deployed resources in the Azure Portal.
 1. Commit the changes to git.
@@ -186,12 +205,13 @@ In this part we are going to add a Key Vault to our Terraform configuration by l
 
 1. Copy the files from the [part 3](labs/part03-keyvault/) folder into the `avm-lab` folder, remembering to retain the existing files and just add an overwrite when prompted.
 
-```powershell
-# Run from the avm-lab folder
-copy ../avm-terraform-labs/labs/part03-key-vault/* .
-```
+      ```pwsh
+      # E.g. Using pwsh, run this from inside your top level lab folder
+      cd avm-lab
+      copy ../avm-terraform-labs/labs/part03-key-vault/* .
+      ```
 
-2. Run `terraform init -upgrade` to install the AVM module for Key Vault.
+1. Run `terraform init -upgrade` to install the AVM module for Key Vault.
 1. Navigate to the `Source Control` tab in Visual Studio Code and review the changes to the files.
 1. Open the `avm.key-vault.tf` file and look at each of the properties, paying close attention to the `private_endpoints` and `role_assigments` variables.
 1. Apply the changes with Terraform.
@@ -204,12 +224,13 @@ In this part we are going to add a Storage Account to our Terraform configuratio
 
 1. Copy the files from the [part 4](labs/part04-storage-account/) folder into the `avm-lab` folder, remembering to retain the existing files and just add an overwrite when prompted.
 
-```powershell
-# Run from the avm-lab folder
-copy ../avm-terraform-labs/labs/part04-storage-account/* .
-```
+      ```pwsh
+      # E.g. Using pwsh, run this from inside your top level lab folder
+      cd avm-lab
+      copy ../avm-terraform-labs/labs/part04-storage-account/* .
+      ```
 
-2. Run `terraform init -upgrade` to install the AVM module for Storage Account.
+1. Run `terraform init -upgrade` to install the AVM module for Storage Account.
 1. Navigate to the `Source Control` tab in Visual Studio Code and review the changes to the files.
 1. Open the `avm.storage-account.tf` file and look at each of the properties, paying close attention to the `managed_identities`, `customer_managed_key` and `containers` variables.
 1. Note in the source control diff that we are adding a key to the Key Vault using the AVM module and assigning permissions for the user assigned managed identity to access the key.
@@ -223,16 +244,18 @@ In this part we are going to add a Virtual Machine to our Terraform configuratio
 
 1. Copy the files from the [part 5](labs/part05-vm/) folder into the `avm-lab` folder, remembering to retain the existing files and just add an overwrite when prompted.
 
-```powershell
-# Run from the avm-lab folder
-copy ../avm-terraform-labs/labs/part05-virtual-machine/* .
-```
+      ```pwsh
+      # E.g. Using pwsh, run this from inside your top level lab folder
+      cd avm-lab
+      copy ../avm-terraform-labs/labs/part05-virtual-machine/* .
+      ```
 
-2. Run `terraform init -upgrade` to install the AVM modules for Virtual Machine and Role Assignments.
+1. Run `terraform init -upgrade` to install the AVM modules for Virtual Machine and Role Assignments.
 1. Apply the changes with Terraform. NOTE: We are applying this now, because the bastion can take a few minutes to deploy.
 1. Navigate to the `Source Control` tab in Visual Studio Code and review the changes to the files.
 1. Open the `avm.virtual-machine.tf` file and look at each of the properties, paying close attention to the `admin_credential_key_vault_resource_id` and `network_interfaces` variables.
 1. Open the `avm.role-assignments.tf` file and look at each of the properties.
+1. Apply the changes with Terraform.
 1. Review the deployed resources in the Azure Portal.
 1. Commit the changes to git.
 
@@ -267,15 +290,15 @@ We are going to create a blob in the storage account using the Azure CLI form th
 1. Run `az storage blob download --account-name <storage-account-name> --container-name demo --name hello.txt --file hello2.txt --auth-mode login` to download the blob to a new file.
 1. Run `cat hello2.txt` to view the contents of the downloaded file.
 
-Here are the commands to run, so you can copy to notepad and replace the placeholder with the storage account name you created in the lab. Then run the commands in the terminal:
+      Here are the commands to run, so you can copy to notepad and replace the placeholder with the storage account name you created in the lab. Then run the commands in the terminal:
 
-```bash
-echo "hello world" > hello.txt
-az storage blob upload --account-name replace_me --container-name demo --file hello.txt --name hello.txt --auth-mode login
-az storage blob list --account-name replace_me --container-name demo --auth-mode login
-az storage blob download --account-name replace_me --container-name demo --name hello.txt --file hello2.txt --auth-mode login
-cat hello2.txt
-```
+      ```bash
+      echo "hello world" > hello.txt
+      az storage blob upload --account-name replace_me --container-name demo --file hello.txt --name hello.txt --auth-mode login
+      az storage blob list --account-name replace_me --container-name demo --auth-mode login
+      az storage blob download --account-name replace_me --container-name demo --name hello.txt --file hello2.txt --auth-mode login
+      cat hello2.txt
+      ```
 
 ### Clean up
 
