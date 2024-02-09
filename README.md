@@ -81,7 +81,7 @@ In this part we are going to setup our Terraform root module and deploy an Azure
       ```pwsh
       # E.g. Using pwsh, run this from inside your top level lab folder
       cd avm-lab
-      copy ./avm-terraform-labs/labs/part01-base/* .
+      copy ../avm-terraform-labs/labs/part01-base/* .
       ```
 
       Your file structure should look like this:
