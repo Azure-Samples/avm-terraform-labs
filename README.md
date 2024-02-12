@@ -38,6 +38,8 @@ This sample deploys the following features:
 * Storage account with customer managed key
 * Private end points and associated private DNS zones
 
+![acrchitecture diagram](./images/levelup-tf-lab-part05.jpg)
+
 ## Getting Started
 
 ### Prerequisites
