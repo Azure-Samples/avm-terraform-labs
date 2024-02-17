@@ -1,6 +1,6 @@
 module "storage_account" {
-  source                            = "Azure/avm-res-storage-storageaccount/azurerm"
-  version                           = "~> 0.1"
+  source = "git::https://github.com/kewalaka/terraform-azurerm-avm-res-storage-storageaccount.git?ref=feat/fix-role-assignments"
+  #version                           = "~> 0.1"
   account_replication_type          = "LRS"
   location                          = azurerm_resource_group.this.location
   name                              = local.storage_account_name
@@ -19,6 +19,12 @@ module "storage_account" {
     demo = {
       name                  = "demo"
       container_access_type = "private"
+      role_assignments = {
+        contributor = {
+          role_definition_id_or_name = "Storage Blob Data Contributor"
+          principal_id               = module.virtual_machine.virtual_machine_azurerm.identity[0].principal_id
+        }
+      }
     }
   }
   private_endpoints = {
