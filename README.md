@@ -242,7 +242,7 @@ In this part we are going to add a Storage Account to our Terraform configuratio
 
 ### Part 5 - Virtual machine and Bastion
 
-In this part we are going to add a Virtual Machine to our Terraform configuration by leveraging the Azure Verified Module for Virtual Machine. The Virtual Machine is going to be used to interact with the Storage Account later. We are also going to leverage the Role Assignments Azure Verified Module to assign permissions to the managed identity of the virtual machine to the storage account.
+In this part we are going to add a Virtual Machine to our Terraform configuration by leveraging the Azure Verified Module for Virtual Machine. The Virtual Machine is going to be used to interact with the Storage Account later. We are also going to add a role assignment to the storage module to assign permissions to the managed identity of the virtual machine to the storage container.
 
 1. Copy the files from the [part 5](labs/part05-vm/) folder into the `avm-lab` folder, remembering to retain the existing files and just add an overwrite when prompted.
 
@@ -256,7 +256,6 @@ In this part we are going to add a Virtual Machine to our Terraform configuratio
 1. Apply the changes with Terraform. NOTE: We are applying this now, because the bastion can take a few minutes to deploy.
 1. Navigate to the `Source Control` tab in Visual Studio Code and review the changes to the files.
 1. Open the `avm.virtual-machine.tf` file and look at each of the properties, paying close attention to the `admin_credential_key_vault_resource_id` and `network_interfaces` variables.
-1. Open the `avm.role-assignments.tf` file and look at each of the properties.
 1. Apply the changes with Terraform.
 1. Review the deployed resources in the Azure Portal.
 1. Commit the changes to git.
