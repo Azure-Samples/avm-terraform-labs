@@ -1,6 +1,6 @@
 module "storage_account" {
-  source = "git::https://github.com/kewalaka/terraform-azurerm-avm-res-storage-storageaccount.git?ref=feat/fix-role-assignments"
-  #version                           = "~> 0.1"
+  source                            = "Azure/avm-res-storage-storageaccount/azurerm"
+  version                           = "~> 0.1.1"
   account_replication_type          = "LRS"
   location                          = azurerm_resource_group.this.location
   name                              = local.storage_account_name
