@@ -17,7 +17,6 @@ module "key_vault" {
         "wrapKey"
       ]
       key_type     = "RSA"
-      key_vault_id = module.key_vault.resource.id
       name         = "cmk-for-storage-account"
       key_size     = 2048
     }
