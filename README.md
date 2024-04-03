@@ -284,7 +284,7 @@ We are going to install the Azure CLI and login with the system assigned managed
 
 ### Part 8 - Create a blob in the storage account
 
-We are going to create a blob in the storage account using the Azure CLI form the Azure Bastion SSH terminal.
+We are going to create a blob in the storage account using the Azure CLI from the Azure Bastion SSH terminal.
 
 1. Run `echo "hello world" > hello.txt` to create a file with some content.
 1. Run `az storage blob upload --account-name <storage-account-name> --container-name demo --file hello.txt --name hello.txt --auth-mode login` to upload the file to the storage account.
