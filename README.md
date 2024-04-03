@@ -16,14 +16,14 @@ This is a lab based sample that demonstrates how to use the Azure Verified Modul
 
 ## Content
 
-| File/folder | Description |
-|-------------|-------------|
-| `labs` | The files for the lab. |
-| `.gitignore` | Define what to ignore at commit time. |
-| `CHANGELOG.md` | List of changes to the sample. |
+| File/folder       | Description                                |
+| ----------------- | ------------------------------------------ |
+| `labs`            | The files for the lab.                     |
+| `.gitignore`      | Define what to ignore at commit time.      |
+| `CHANGELOG.md`    | List of changes to the sample.             |
 | `CONTRIBUTING.md` | Guidelines for contributing to the sample. |
-| `README.md` | This README file. |
-| `LICENSE.md` | The license for the sample. |
+| `README.md`       | This README file.                          |
+| `LICENSE.md`      | The license for the sample.                |
 
 ## Features
 
@@ -256,9 +256,10 @@ In this part we are going to add a Virtual Machine to our Terraform configuratio
 1. Apply the changes with Terraform. NOTE: We are applying this now, because the bastion can take a few minutes to deploy.
 1. Navigate to the `Source Control` tab in Visual Studio Code and review the changes to the files.
 1. Open the `avm.virtual-machine.tf` file and look at each of the properties, paying close attention to the `admin_credential_key_vault_resource_id` and `network_interfaces` variables.
-1. Apply the changes with Terraform.
-1. Review the deployed resources in the Azure Portal.
-1. Commit the changes to git.
+2. Change the `virtualmachine_sku_size` and the `zone` according to you region.
+3. Apply the changes with Terraform.
+4. Review the deployed resources in the Azure Portal.
+5. Commit the changes to git.
 
 ### Part 6 - Connect to the VM via Bastion
 
