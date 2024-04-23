@@ -8,6 +8,7 @@ module "virtual_machine" {
   location                               = var.location
   admin_credential_key_vault_resource_id = module.key_vault.resource.id
   virtualmachine_sku_size                = "Standard_B1s"
+  zone                                   = "1"
 
   managed_identities = {
     system_assigned = true
