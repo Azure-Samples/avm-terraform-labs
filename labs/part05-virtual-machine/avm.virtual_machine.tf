@@ -5,6 +5,7 @@ module "virtual_machine" {
   resource_group_name                    = azurerm_resource_group.this.name
   virtualmachine_os_type                 = "linux"
   name                                   = local.virtual_machine_name
+  location                               = var.location
   admin_credential_key_vault_resource_id = module.key_vault.resource.id
   virtualmachine_sku_size                = "Standard_B1s"
 
