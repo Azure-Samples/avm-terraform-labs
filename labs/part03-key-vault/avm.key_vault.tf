@@ -8,8 +8,8 @@ module "key_vault" {
   public_network_access_enabled = true
   private_endpoints = {
     primary = {
-      private_dns_zone_resource_ids = [azurerm_private_dns_zone.key_vault.id]
-      subnet_resource_id            = module.virtual_network.subnets["private_endpoints"].id
+      private_dns_zone_resource_ids = [module.private_dns_zone_key_vault.private_dnz_zone_output.id]
+      subnet_resource_id            = module.virtual_network.subnets["private_endpoints"].resource_id
       subresource_name              = ["vault"]
     }
   }

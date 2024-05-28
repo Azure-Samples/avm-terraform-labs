@@ -163,10 +163,10 @@ In this part we are going to add a virtual network and subnets to our Terraform 
       ┃ ┣ 📂.terraform
       ┃ ┣ 📜.gitignore
       ┃ ┣ 📜.terraform.lock.hcl
+      ┃ ┣ 📜avm.network_security_group.tf
       ┃ ┣ 📜avm.virtual_network.tf
       ┃ ┣ 📜locals.tf
       ┃ ┣ 📜main.tf
-      ┃ ┣ 📜non.avm.network_security_group.tf
       ┃ ┣ 📜outputs.tf
       ┃ ┣ 📜terraform.tf
       ┃ ┣ 📜terraform.tfstate
