@@ -24,8 +24,8 @@ module "key_vault" {
   }
   private_endpoints = {
     primary = {
-      private_dns_zone_resource_ids = [azurerm_private_dns_zone.key_vault.id]
-      subnet_resource_id            = module.virtual_network.subnets["private_endpoints"].id
+      private_dns_zone_resource_ids = [module.private_dns_zone_key_vault.private_dnz_zone_output.id]
+      subnet_resource_id            = module.virtual_network.subnets["private_endpoints"].resource_id
       subresource_name              = ["vault"]
     }
   }
@@ -36,7 +36,7 @@ module "key_vault" {
     }
     customer_managed_key = {
       role_definition_id_or_name = "Key Vault Crypto Officer"
-      principal_id               = azurerm_user_assigned_identity.this.principal_id
+      principal_id               = module.azurerm_user_assigned_identity.principal_id
     }
   }
   wait_for_rbac_before_secret_operations = {

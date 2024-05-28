@@ -26,7 +26,7 @@ locals {
     name             = key
     address_prefixes = [local.cidr_subnets[index(local.subnet_keys, key)]]
     network_security_group = contains(local.skip_nsg, key) ? null : {
-      id = azurerm_network_security_group.this.id
+      id = module.network_security_group.resource_id
     }
     }
   }
