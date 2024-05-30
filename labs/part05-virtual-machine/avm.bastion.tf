@@ -18,4 +18,7 @@ module "bastion" {
     subnet_id            = module.virtual_network.subnets["AzureBastionSubnet"].resource_id
     public_ip_address_id = module.bastion_public_ip.public_ip_id
   }
+
+  diagnostic_settings = local.diagnostic_settings
+  tags                = var.tags
 }
