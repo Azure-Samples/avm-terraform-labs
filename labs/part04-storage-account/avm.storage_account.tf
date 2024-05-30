@@ -23,12 +23,6 @@ module "storage_account" {
     demo = {
       name                  = "demo"
       container_access_type = "private"
-      role_assignments = {
-        contributor = {
-          role_definition_id_or_name = "Storage Blob Data Contributor"
-          principal_id               = module.virtual_machine.virtual_machine_azurerm.identity[0].principal_id
-        }
-      }
     }
   }
 
