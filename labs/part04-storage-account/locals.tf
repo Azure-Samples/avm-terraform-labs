@@ -3,6 +3,7 @@ locals {
   unique_postfix = random_pet.unique_name.id
 
   resource_group_name                 = "rg-demo-${local.unique_postfix}"
+  log_analytics_workspace_name        = "law-demo-${local.unique_postfix}"
   virtual_network_name                = "vnet-demo-${local.unique_postfix}"
   network_security_group_name         = "nsg-demo-${local.unique_postfix}"
   key_vault_name                      = "kv-demo-${format("%.16s", local.unique_postfix)}"
@@ -24,6 +25,16 @@ locals {
     network_security_group = contains(local.skip_nsg, key) ? null : {
       id = azurerm_network_security_group.this.id
     }
+    }
+  }
+}
+
+# Diagnostic settings
+locals {
+  diagnostic_settings = {
+    sendToLogAnalytics = {
+      name                  = "sendToLogAnalytics"
+      workspace_resource_id = module.log_analytics_workspace.resource.id
     }
   }
 }

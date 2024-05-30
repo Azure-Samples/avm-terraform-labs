@@ -75,7 +75,7 @@ Your file structure should now look like this:
 
 ### Part 1 - Base files and resources
 
-In this part we are going to setup our Terraform root module and deploy an Azure Resoure Group ready for the rest of the lab.
+In this part we are going to setup our Terraform root module and deploy an Azure Resoure Group and Log Analytics Workspace ready for the rest of the lab. In this part we introduce out first Azure Verified Module, the `avm-res-log-analytics-workspace` module.
 
 1. Create a new folder under your lab folder called `avm-lab`.
 1. Copy the files from the [part 1](labs/part01-base/) folder into the `avm-lab` folder.
@@ -92,6 +92,7 @@ In this part we are going to setup our Terraform root module and deploy an Azure
       📂my-lab-folder
       ┣ 📂avm-lab
       ┃ ┣ 📜.gitignore
+      ┃ ┣ 📜avm.log_analytics_workspace.tf
       ┃ ┣ 📜locals.tf
       ┃ ┣ 📜main.tf
       ┃ ┣ 📜outputs.tf
@@ -103,6 +104,7 @@ In this part we are going to setup our Terraform root module and deploy an Azure
 1. Open Visual Studio Code and open the `avm-lab` folder. Hint: `code .`
 1. Examine the `terraform` block in `terraform.tf` and note that we are referencing the `azurerm` and `random` providers.
 1. Examine the `locals.tf`, `variables.tf`, `outputs.tf` and `main.tf` files.
+1. Examine the `avm.log_analytics_workspace.tf` file and note the `source` and `version` properties.
 1. Create a file called `terraform.tfvars` and add the following code to it, ensuring you replace the placeholder for a valid Azure location of your choice (e.g. uksouth):
 
       ```hcl
@@ -163,6 +165,7 @@ In this part we are going to add a virtual network and subnets to our Terraform 
       ┃ ┣ 📂.terraform
       ┃ ┣ 📜.gitignore
       ┃ ┣ 📜.terraform.lock.hcl
+      ┃ ┣ 📜avm.log_analytics_workspace.tf
       ┃ ┣ 📜avm.network_security_group.tf
       ┃ ┣ 📜avm.virtual_network.tf
       ┃ ┣ 📜locals.tf
@@ -196,6 +199,7 @@ In this part we are going to add a virtual network and subnets to our Terraform 
 1. Run `terraform init -upgrade` to install the AVM module for Virtual Networks.
 1. Navigate to the `Source Control` tab in Visual Studio Code and review the changes to the files.
 1. Open the `avm.virtual-network.tf` file and look at each of the properties, paying close attention to the `source` and `version` properties.
+1. Examine the diagnostics settings in `locals.tf` and take note that this same setting will be applied to all of the AVM modules in the lab.
 1. In order to find more detail about AVM modules, you can navigate to their documentation. For example, you can find the documentation for the Virtual Network module [here](https://registry.terraform.io/modules/Azure/avm-res-network-virtualnetwork/azurerm/latest). From there you can navigate to the source code and see the module's implementation [here](https://github.com/Azure/terraform-azurerm-avm-res-network-virtualnetwork).
 1. Apply the changes with Terraform. Hint: `terraform apply -auto-approve`.
 1. Review the deployed resources in the Azure Portal.

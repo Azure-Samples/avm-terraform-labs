@@ -6,8 +6,10 @@ module "private_dns_zone_key_vault" {
   domain_name         = "privatelink.vaultcore.azure.net"
   virtual_network_links = {
     vnetlink1 = {
-      vnetlinkname     = "key-vault"
-      vnetid           = module.virtual_network.resource_id
+      vnetlinkname = "key-vault"
+      vnetid       = module.virtual_network.resource_id
     }
   }
+
+  dns_zone_tags = var.tags
 }

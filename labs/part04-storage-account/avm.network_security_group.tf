@@ -18,4 +18,12 @@ module "network_security_group" {
       source_port_range          = "*"
     }
   }
+
+  diagnostic_settings = { for k, v in local.diagnostic_settings : k => {
+    name                  = v.name
+    workspace_resource_id = v.workspace_resource_id
+    metric_categories     = []
+    }
+  }
+  tags = var.tags
 }
