@@ -1,6 +1,6 @@
 module "key_vault" {
   source  = "Azure/avm-res-keyvault-vault/azurerm"
-  version = "~> 0.5"
+  version = "0.9.1"
 
   name                          = local.key_vault_name
   location                      = azurerm_resource_group.this.location
@@ -18,16 +18,15 @@ module "key_vault" {
         "verify",
         "wrapKey"
       ]
-      key_type     = "RSA"
-      key_vault_id = module.key_vault.resource.id
-      name         = "cmk-for-storage-account"
-      key_size     = 2048
+      key_type = "RSA"
+      name     = "cmk-for-storage-account"
+      key_size = 2048
     }
   }
 
   private_endpoints = {
     primary = {
-      private_dns_zone_resource_ids = [module.private_dns_zone_key_vault.private_dnz_zone_output.id]
+      private_dns_zone_resource_ids = [module.private_dns_zone_key_vault.resource_id]
       subnet_resource_id            = module.virtual_network.subnets["private_endpoints"].resource_id
       subresource_name              = ["vault"]
       tags                          = var.tags
@@ -45,7 +44,7 @@ module "key_vault" {
     }
   }
 
-  wait_for_rbac_before_secret_operations = {
+  wait_for_rbac_before_key_operations = {
     create = "60s"
   }
 

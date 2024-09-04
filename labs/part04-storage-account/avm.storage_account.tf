@@ -1,6 +1,6 @@
 module "storage_account" {
   source  = "Azure/avm-res-storage-storageaccount/azurerm"
-  version = "~> 0.1"
+  version = "0.2.5"
 
   account_replication_type          = "LRS"
   location                          = azurerm_resource_group.this.location
@@ -14,8 +14,8 @@ module "storage_account" {
   }
 
   customer_managed_key = {
-    key_vault_resource_id  = module.key_vault.resource.id
-    key_name               = module.key_vault.resource_keys["cmk_for_storage_account"].name
+    key_vault_resource_id  = module.key_vault.resource_id
+    key_name               = "cmk-for-storage-account"
     user_assigned_identity = { resource_id = module.azurerm_user_assigned_identity.resource_id }
   }
 
@@ -28,7 +28,7 @@ module "storage_account" {
 
   private_endpoints = {
     primary = {
-      private_dns_zone_resource_ids = [module.private_dns_zone_storage_account.private_dnz_zone_output.id]
+      private_dns_zone_resource_ids = [module.private_dns_zone_storage_account.resource_id]
       subnet_resource_id            = module.virtual_network.subnets["private_endpoints"].resource_id
       subresource_name              = "blob"
       tags                          = var.tags
