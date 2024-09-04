@@ -1,14 +1,17 @@
 module "virtual_machine" {
   source  = "Azure/avm-res-compute-virtualmachine/azurerm"
-  version = "~> 0.13"
+  version = "0.16.0"
 
-  resource_group_name                    = azurerm_resource_group.this.name
-  virtualmachine_os_type                 = "linux"
-  name                                   = local.virtual_machine_name
-  admin_credential_key_vault_resource_id = module.key_vault.resource.id
-  virtualmachine_sku_size                = "Standard_B1s"
-  location                               = azurerm_resource_group.this.location
-  zone                                   = "1"
+  resource_group_name = azurerm_resource_group.this.name
+  os_type             = "linux"
+  name                = local.virtual_machine_name
+  sku_size            = "Standard_B1s"
+  location            = azurerm_resource_group.this.location
+  zone                = "1"
+
+  generated_secrets_key_vault_secret_config = {
+    key_vault_resource_id = module.key_vault.resource_id
+  }
 
   managed_identities = {
     system_assigned = true

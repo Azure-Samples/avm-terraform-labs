@@ -13,9 +13,13 @@ variable "address_space_size" {
   description = "The address space that is used the virtual network"
 }
 
-variable "subnets_and_sizes" {
-  type        = map(number)
-  description = "The size of the subnets"
+variable "subnets" {
+  type = map(object({
+    size                       = number
+    has_nat_gateway            = bool
+    has_network_security_group = bool
+  }))
+  description = "The subnets"
 }
 
 variable "tags" {

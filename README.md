@@ -185,10 +185,22 @@ In this part we are going to add a virtual network and subnets to our Terraform 
       location               = "<azure region>"
       address_space_start_ip = "10.0.0.0"
       address_space_size     = 16
-      subnets_and_sizes = {
-        AzureBastionSubnet = 24
-        private_endpoints  = 28
-        virtual_machines   = 24
+      subnets = {
+        AzureBastionSubnet = {
+          size = 24
+          has_nat_gateway = false
+          has_network_security_group = false
+        }
+        private_endpoints  = {
+          size = 28
+          has_nat_gateway = false
+          has_network_security_group = true
+        }
+        virtual_machines   = {
+          size = 24
+          has_nat_gateway = true
+          has_network_security_group = false
+        }
       }
       tags = {
         type = "avm"

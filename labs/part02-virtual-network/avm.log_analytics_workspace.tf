@@ -1,6 +1,6 @@
 module "log_analytics_workspace" {
   source  = "Azure/avm-res-operationalinsights-workspace/azurerm"
-  version = "~> 0.1"
+  version = "0.3.5"
 
   name                = local.log_analytics_workspace_name
   location            = azurerm_resource_group.this.location
