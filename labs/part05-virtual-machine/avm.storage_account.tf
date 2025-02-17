@@ -1,22 +1,22 @@
 module "storage_account" {
   source  = "Azure/avm-res-storage-storageaccount/azurerm"
-  version = "0.2.5"
+  version = "0.5.0"
 
   account_replication_type          = "LRS"
-  location                          = azurerm_resource_group.this.location
+  location                          = var.location
   name                              = local.storage_account_name
-  resource_group_name               = azurerm_resource_group.this.name
+  resource_group_name               = module.resource_group.name
   infrastructure_encryption_enabled = true
 
   managed_identities = {
     system_assigned            = true
-    user_assigned_resource_ids = [module.azurerm_user_assigned_identity.resource_id]
+    user_assigned_resource_ids = [module.user_assigned_identity.resource_id]
   }
 
   customer_managed_key = {
     key_vault_resource_id  = module.key_vault.resource_id
-    key_name               = "cmk-for-storage-account"
-    user_assigned_identity = { resource_id = module.azurerm_user_assigned_identity.resource_id }
+    key_name               = reverse(split("/", module.key_vault.keys_resource_ids["cmk_for_storage_account"].versionless_id))[0]
+    user_assigned_identity = { resource_id = module.user_assigned_identity.resource_id }
   }
 
   containers = {

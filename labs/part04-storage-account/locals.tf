@@ -42,3 +42,9 @@ locals {
     }
   }
 }
+
+# My IP address
+locals {
+  my_ip_address_split = split(".", data.http.ip.response_body)
+  my_cidr_slash_24    = "${join(".", slice(local.my_ip_address_split, 0, 3))}.0/24"
+}

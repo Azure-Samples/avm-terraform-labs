@@ -1,9 +1,10 @@
 module "network_security_group" {
-  source              = "Azure/avm-res-network-networksecuritygroup/azurerm"
-  version             = "0.2.0"
-  resource_group_name = azurerm_resource_group.this.name
+  source  = "Azure/avm-res-network-networksecuritygroup/azurerm"
+  version = "0.3.0"
+
+  resource_group_name = module.resource_group.name
   name                = local.network_security_group_name
-  location            = azurerm_resource_group.this.location
+  location            = var.location
 
   security_rules = {
     no_internet = {

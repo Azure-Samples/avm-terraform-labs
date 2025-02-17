@@ -118,6 +118,7 @@ In this part we are going to setup our Terraform root module and deploy an Azure
 1. Open a terminal in Visual Studio Code and ensure you are in the root of your `avm-lab` folder.
 1. Run `az login` to login to your Azure subscription.
 1. Run `az account show` to show the current subscription. Run `az account set --subscription <subscription-id>` to set the subscription if it is not the one you want to use.
+1. Set your subscription ID environment variable with `$env:ARM_SUBSCRIPTION_ID = $(az account show --query id -o tsv)`. This is required by the `azurerm` provider since v4.
 1. Run `terraform init` to initialize the Terraform configuration.
 1. Run `terraform plan -out tfplan` to see what resources will be created and create a plan file.
 1. Run `terraform apply tfplan` to create the resources based on the plan file.

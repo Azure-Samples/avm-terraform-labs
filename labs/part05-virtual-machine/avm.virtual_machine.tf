@@ -1,12 +1,12 @@
 module "virtual_machine" {
   source  = "Azure/avm-res-compute-virtualmachine/azurerm"
-  version = "0.16.0"
+  version = "0.18.0"
 
-  resource_group_name = azurerm_resource_group.this.name
+  resource_group_name = module.resource_group.name
   os_type             = "linux"
   name                = local.virtual_machine_name
   sku_size            = "Standard_B1s"
-  location            = azurerm_resource_group.this.location
+  location            = var.location
   zone                = "1"
 
   generated_secrets_key_vault_secret_config = {
