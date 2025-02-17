@@ -44,7 +44,7 @@ This sample deploys the following features:
 
 ### Prerequisites
 
-* HashiCorp Terraform CLI Version 1.7 or higher: [Download](https://www.terraform.io/downloads)
+* HashiCorp Terraform CLI Version 1.10 or higher: [Download](https://www.terraform.io/downloads)
 * Git: [Download](https://git-scm.com/downloads)
 * Visual Studio Code: [Download](https://code.visualstudio.com/)
   * Azure Terraform Extension for Visual Studio Code: [Install](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azureterraform)
