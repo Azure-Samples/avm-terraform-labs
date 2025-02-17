@@ -3,8 +3,8 @@ module "key_vault" {
   version = "0.9.1"
 
   name                          = local.key_vault_name
-  location                      = azurerm_resource_group.this.location
-  resource_group_name           = azurerm_resource_group.this.name
+  location                      = var.location
+  resource_group_name           = module.resource_group.name
   tenant_id                     = data.azurerm_client_config.current.tenant_id
   public_network_access_enabled = true
 

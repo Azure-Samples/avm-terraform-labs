@@ -1,8 +1,8 @@
 module "nat_gateway" {
   source  = "Azure/avm-res-network-natgateway/azurerm"
-  version = "0.2.0"
+  version = "0.2.1"
 
-  resource_group_name = azurerm_resource_group.this.name
+  resource_group_name = module.resource_group.name
   location            = var.location
   name                = local.nat_gateway_name
   public_ips = {

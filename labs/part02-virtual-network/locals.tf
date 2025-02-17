@@ -10,7 +10,7 @@ locals {
   nat_public_ip_name           = "natpip-demo-${local.unique_postfix}"
 }
 
-# Caluculate the CIDR for the subnets
+# Calculate the CIDR for the subnets
 locals {
   virtual_network_address_space = "${var.address_space_start_ip}/${var.address_space_size}"
   subnet_keys                   = keys(var.subnets)

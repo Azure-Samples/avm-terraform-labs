@@ -17,7 +17,7 @@ locals {
   bastion_host_name                   = "bastion-demo-${local.unique_postfix}"
 }
 
-# Caluculate the CIDR for the subnets
+# Calculate the CIDR for the subnets
 locals {
   virtual_network_address_space = "${var.address_space_start_ip}/${var.address_space_size}"
   subnet_keys                   = keys(var.subnets)
@@ -45,4 +45,10 @@ locals {
       workspace_resource_id = module.log_analytics_workspace.resource.id
     }
   }
+}
+
+# My IP address
+locals {
+  my_ip_address_split = split(".", data.http.ip.response_body)
+  my_cidr_slash_24    = "${join(".", slice(local.my_ip_address_split, 0, 3))}.0/24"
 }

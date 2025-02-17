@@ -1,9 +1,9 @@
 terraform {
-  required_version = "~> 1.7"
+  required_version = "~> 1.10"
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "~> 3.105"
+      version = "~> 4.19"
     }
     random = {
       source  = "hashicorp/random"
@@ -22,5 +22,6 @@ provider "azurerm" {
       prevent_deletion_if_contains_resources = false # This is to handle MCAPS or other policy driven resource creation.
     }
   }
-  storage_use_azuread = true
+  resource_provider_registrations = "core"
+  storage_use_azuread             = true
 }

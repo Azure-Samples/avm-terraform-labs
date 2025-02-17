@@ -3,8 +3,8 @@ module "key_vault" {
   version = "0.9.1"
 
   name                          = local.key_vault_name
-  location                      = azurerm_resource_group.this.location
-  resource_group_name           = azurerm_resource_group.this.name
+  location                      = var.location
+  resource_group_name           = module.resource_group.name
   tenant_id                     = data.azurerm_client_config.current.tenant_id
   public_network_access_enabled = true
 
@@ -40,7 +40,7 @@ module "key_vault" {
     }
     customer_managed_key = {
       role_definition_id_or_name = "Key Vault Crypto Officer"
-      principal_id               = module.azurerm_user_assigned_identity.principal_id
+      principal_id               = module.user_assigned_identity.principal_id
     }
   }
 
@@ -50,7 +50,7 @@ module "key_vault" {
 
   network_acls = {
     bypass   = "AzureServices"
-    ip_rules = ["${data.http.ip.response_body}/32"]
+    ip_rules = [local.my_cidr_slash_24]
   }
 
   diagnostic_settings = local.diagnostic_settings

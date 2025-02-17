@@ -38,13 +38,13 @@ This sample deploys the following features:
 * Storage account with customer managed key
 * Private end points and associated private DNS zones
 
-![acrchitecture diagram](./images/levelup-tf-lab-part05.jpg)
+![architecture diagram](./images/levelup-tf-lab-part05.jpg)
 
 ## Getting Started
 
 ### Prerequisites
 
-* HashiCorp Terraform CLI Version 1.7 or higher: [Download](https://www.terraform.io/downloads)
+* HashiCorp Terraform CLI Version 1.10 or higher: [Download](https://www.terraform.io/downloads)
 * Git: [Download](https://git-scm.com/downloads)
 * Visual Studio Code: [Download](https://code.visualstudio.com/)
   * Azure Terraform Extension for Visual Studio Code: [Install](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azureterraform)
@@ -75,7 +75,7 @@ Your file structure should now look like this:
 
 ### Part 1 - Base files and resources
 
-In this part we are going to setup our Terraform root module and deploy an Azure Resoure Group and Log Analytics Workspace ready for the rest of the lab. In this part we introduce out first Azure Verified Module, the `avm-res-log-analytics-workspace` module.
+In this part we are going to setup our Terraform root module and deploy an Azure Resource Group and Log Analytics Workspace ready for the rest of the lab. In this part we introduce out first Azure Verified Module, the `avm-res-log-analytics-workspace` module.
 
 1. Create a new folder under your lab folder called `avm-lab`.
 1. Copy the files from the [part 1](labs/part01-base/) folder into the `avm-lab` folder.
@@ -118,6 +118,7 @@ In this part we are going to setup our Terraform root module and deploy an Azure
 1. Open a terminal in Visual Studio Code and ensure you are in the root of your `avm-lab` folder.
 1. Run `az login` to login to your Azure subscription.
 1. Run `az account show` to show the current subscription. Run `az account set --subscription <subscription-id>` to set the subscription if it is not the one you want to use.
+1. Set your subscription ID environment variable with `$env:ARM_SUBSCRIPTION_ID = $(az account show --query id -o tsv)`. This is required by the `azurerm` provider since v4.
 1. Run `terraform init` to initialize the Terraform configuration.
 1. Run `terraform plan -out tfplan` to see what resources will be created and create a plan file.
 1. Run `terraform apply tfplan` to create the resources based on the plan file.
@@ -144,7 +145,7 @@ In this part we are going to setup our Terraform root module and deploy an Azure
 
 ### Part 2 - Virtual network and subnets
 
-In this part we are going to add a virtual network and subnets to our Terraform configuration by leveraging the Azure Verified Module for Virtual Network. The Virtual Network is going to be used to provide private connnectivity between and to our virtual machine, key vault and storage account.
+In this part we are going to add a virtual network and subnets to our Terraform configuration by leveraging the Azure Verified Module for Virtual Network. The Virtual Network is going to be used to provide private connectivity between and to our virtual machine, key vault and storage account.
 
 >IMPORTANT: This lab is incremental, you must not delete any files from the previous lab (especially the `terraform.tfstate` file). You must copy the files from the next lab into the `avm-lab` folder and only replace the existing files when prompted.
 
@@ -184,21 +185,21 @@ In this part we are going to add a virtual network and subnets to our Terraform 
       ```hcl
       location               = "<azure region>"
       address_space_start_ip = "10.0.0.0"
-      address_space_size     = 16
+      address_space_size     = 22
       subnets = {
         AzureBastionSubnet = {
-          size = 24
-          has_nat_gateway = false
+          size                       = 26
+          has_nat_gateway            = false
           has_network_security_group = false
         }
-        private_endpoints  = {
-          size = 28
-          has_nat_gateway = false
+        private_endpoints = {
+          size                       = 28
+          has_nat_gateway            = false
           has_network_security_group = true
         }
-        virtual_machines   = {
-          size = 24
-          has_nat_gateway = true
+        virtual_machines = {
+          size                       = 24
+          has_nat_gateway            = true
           has_network_security_group = false
         }
       }
@@ -231,7 +232,7 @@ In this part we are going to add a Key Vault to our Terraform configuration by l
 
 1. Run `terraform init -upgrade` to install the AVM module for Key Vault.
 1. Navigate to the `Source Control` tab in Visual Studio Code and review the changes to the files.
-1. Open the `avm.key-vault.tf` file and look at each of the properties, paying close attention to the `private_endpoints` and `role_assigments` variables.
+1. Open the `avm.key-vault.tf` file and look at each of the properties, paying close attention to the `private_endpoints` and `role_assignments` variables.
 1. Apply the changes with Terraform.
 1. Review the deployed resources in the Azure Portal.
 1. Commit the changes to git.

@@ -1,8 +1,8 @@
 module "private_dns_zone_key_vault" {
   source  = "Azure/avm-res-network-privatednszone/azurerm"
-  version = "0.1.2"
+  version = "0.3.2"
 
-  resource_group_name = azurerm_resource_group.this.name
+  resource_group_name = module.resource_group.name
   domain_name         = "privatelink.vaultcore.azure.net"
 
   virtual_network_links = {
@@ -17,9 +17,9 @@ module "private_dns_zone_key_vault" {
 
 module "private_dns_zone_storage_account" {
   source  = "Azure/avm-res-network-privatednszone/azurerm"
-  version = "0.1.2"
+  version = "0.3.2"
 
-  resource_group_name = azurerm_resource_group.this.name
+  resource_group_name = module.resource_group.name
   domain_name         = "privatelink.blob.core.windows.net"
 
   virtual_network_links = {
