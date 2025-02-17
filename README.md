@@ -38,7 +38,7 @@ This sample deploys the following features:
 * Storage account with customer managed key
 * Private end points and associated private DNS zones
 
-![acrchitecture diagram](./images/levelup-tf-lab-part05.jpg)
+![architecture diagram](./images/levelup-tf-lab-part05.jpg)
 
 ## Getting Started
 
@@ -75,7 +75,7 @@ Your file structure should now look like this:
 
 ### Part 1 - Base files and resources
 
-In this part we are going to setup our Terraform root module and deploy an Azure Resoure Group and Log Analytics Workspace ready for the rest of the lab. In this part we introduce out first Azure Verified Module, the `avm-res-log-analytics-workspace` module.
+In this part we are going to setup our Terraform root module and deploy an Azure Resource Group and Log Analytics Workspace ready for the rest of the lab. In this part we introduce out first Azure Verified Module, the `avm-res-log-analytics-workspace` module.
 
 1. Create a new folder under your lab folder called `avm-lab`.
 1. Copy the files from the [part 1](labs/part01-base/) folder into the `avm-lab` folder.
@@ -145,7 +145,7 @@ In this part we are going to setup our Terraform root module and deploy an Azure
 
 ### Part 2 - Virtual network and subnets
 
-In this part we are going to add a virtual network and subnets to our Terraform configuration by leveraging the Azure Verified Module for Virtual Network. The Virtual Network is going to be used to provide private connnectivity between and to our virtual machine, key vault and storage account.
+In this part we are going to add a virtual network and subnets to our Terraform configuration by leveraging the Azure Verified Module for Virtual Network. The Virtual Network is going to be used to provide private connectivity between and to our virtual machine, key vault and storage account.
 
 >IMPORTANT: This lab is incremental, you must not delete any files from the previous lab (especially the `terraform.tfstate` file). You must copy the files from the next lab into the `avm-lab` folder and only replace the existing files when prompted.
 
@@ -232,7 +232,7 @@ In this part we are going to add a Key Vault to our Terraform configuration by l
 
 1. Run `terraform init -upgrade` to install the AVM module for Key Vault.
 1. Navigate to the `Source Control` tab in Visual Studio Code and review the changes to the files.
-1. Open the `avm.key-vault.tf` file and look at each of the properties, paying close attention to the `private_endpoints` and `role_assigments` variables.
+1. Open the `avm.key-vault.tf` file and look at each of the properties, paying close attention to the `private_endpoints` and `role_assignments` variables.
 1. Apply the changes with Terraform.
 1. Review the deployed resources in the Azure Portal.
 1. Commit the changes to git.
