@@ -238,7 +238,7 @@ In this part we are going to add a virtual network and subnets to our Terraform 
       }
       ```
 
-1. Run `terraform init -upgrade` to install the AVM module for Virtual Networks.
+1. Run `terraform init` to install the AVM module for Virtual Networks.
 1. Navigate to the `Source Control` tab in Visual Studio Code and review the changes to the files.
 1. Open the `avm.virtual-network.tf` file and look at each of the properties, paying close attention to the `source` and `version` properties.
 1. Examine the diagnostics settings in `locals.tf` and take note that this same setting will be applied to all of the AVM modules in the lab.
@@ -257,7 +257,7 @@ In this part we are going to add a Key Vault to our Terraform configuration by l
       copy ../avm-terraform-labs/labs/part03-key-vault/* .
       ```
 
-1. Run `terraform init -upgrade` to install the AVM module for Key Vault.
+1. Run `terraform init` to install the AVM module for Key Vault.
 1. Navigate to the `Source Control` tab in Visual Studio Code and review the changes to the files.
 1. Open the `avm.key-vault.tf` file and look at each of the properties, paying close attention to the `private_endpoints` and `role_assignments` variables.
 1. Apply the changes with Terraform: `terraform apply -auto-approve`.
@@ -274,7 +274,7 @@ In this part we are going to add a Storage Account to our Terraform configuratio
       copy ../avm-terraform-labs/labs/part04-storage-account/* .
       ```
 
-1. Run `terraform init -upgrade` to install the AVM module for Storage Account.
+1. Run `terraform init` to install the AVM module for Storage Account.
 1. Navigate to the `Source Control` tab in Visual Studio Code and review the changes to the files.
 1. Open the `avm.storage-account.tf` file and look at each of the properties, paying close attention to the `managed_identities`, `customer_managed_key` and `containers` variables.
 1. Note in the source control diff that we are adding a key to the Key Vault using the AVM module and assigning permissions for the user assigned managed identity to access the key.
@@ -292,7 +292,7 @@ In this part we are going to add a Virtual Machine to our Terraform configuratio
       copy ../avm-terraform-labs/labs/part05-virtual-machine/* .
       ```
 
-1. Run `terraform init -upgrade` to install the AVM modules for Virtual Machine and Role Assignments.
+1. Run `terraform init` to install the AVM modules for Virtual Machine and Role Assignments.
 1. Apply the changes with Terraform. NOTE: We are applying this now, because the bastion can take a few minutes to deploy.
 1. Navigate to the `Source Control` tab in Visual Studio Code and review the changes to the files.
 1. Open the `avm.virtual-machine.tf` file and look at each of the properties, paying close attention to the `admin_credential_key_vault_resource_id` and `network_interfaces` variables.
