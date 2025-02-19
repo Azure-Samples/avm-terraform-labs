@@ -298,7 +298,7 @@ In this part we are going to add a Virtual Machine to our Terraform configuratio
 1. Open the `avm.virtual-machine.tf` file and look at each of the properties, paying close attention to the `admin_credential_key_vault_resource_id` and `network_interfaces` variables.
 1. Apply the changes with Terraform: `terraform apply -auto-approve`.
 1. Review the deployed resources in the Azure Portal.
-1. Commit the changes to git: `git add . && git commit -m "Add virtual machine and bastion`.
+1. Commit the changes to git: `git add . && git commit -m "Add virtual machine and bastion"`.
 
 ### Part 6 - Connect to the VM via Bastion
 
