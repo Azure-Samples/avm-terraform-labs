@@ -165,7 +165,7 @@ In this part we are going to setup our Terraform root module and deploy an Azure
       ```
 
 1. Navigate to the Azure Portal and review the resources that have been created.
-1. Run `git init` to initialize a new git repository.
+1. Run `git init -b main` to initialize a new git repository.
 1. Run `git add .` to stage the files.
 1. Run `git commit -m "Initial commit"` to commit the files.
 1. If you are prompted to set up a git Author identity, follow the instructions and then re-run the `git commit` command.
