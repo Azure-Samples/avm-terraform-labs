@@ -40,7 +40,7 @@ module "key_vault" {
     }
     customer_managed_key = {
       role_definition_id_or_name = "Key Vault Crypto Officer"
-      principal_id               = module.user_assigned_identity.principal_id
+      principal_id               = module.user_assigned_managed_identity.principal_id
     }
   }
 

@@ -1,4 +1,4 @@
-module "user_assigned_identity" {
+module "user_assigned_managed_identity" {
   source  = "Azure/avm-res-managedidentity-userassignedidentity/azurerm"
   version = "0.3.3"
 

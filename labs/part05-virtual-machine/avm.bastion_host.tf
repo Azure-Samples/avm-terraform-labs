@@ -1,4 +1,4 @@
-module "bastion" {
+module "bastion_host" {
   source  = "Azure/avm-res-network-bastionhost/azurerm"
   version = "0.4.0"
 
@@ -16,7 +16,7 @@ module "bastion" {
   ip_configuration = {
     name                 = "ipconfig"
     subnet_id            = module.virtual_network.subnets["AzureBastionSubnet"].resource_id
-    public_ip_address_id = module.bastion_public_ip.public_ip_id
+    public_ip_address_id = module.bastion_host_public_ip.public_ip_id
   }
 
   diagnostic_settings = local.diagnostic_settings

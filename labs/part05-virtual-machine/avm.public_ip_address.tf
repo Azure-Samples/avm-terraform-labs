@@ -1,4 +1,4 @@
-module "bastion_public_ip" {
+module "bastion_host_public_ip" {
   source  = "Azure/avm-res-network-publicipaddress/azurerm"
   version = "0.2.0"
 
