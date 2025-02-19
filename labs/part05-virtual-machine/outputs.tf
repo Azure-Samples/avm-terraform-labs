@@ -1,15 +1,15 @@
 output "names" {
   value = {
-    resource_group_name                 = local.resource_group_name
-    virtual_network_name                = local.virtual_network_name
-    network_security_group_name         = local.network_security_group_name
-    key_vault_name                      = local.key_vault_name
-    storage_account_name                = local.storage_account_name
-    user_assigned_managed_identity_name = local.user_assigned_managed_identity_name
-    virtual_machine_name                = local.virtual_machine_name
-    network_interface_name              = local.network_interface_name
-    bastion_host_public_ip_name         = local.bastion_host_public_ip_name
-    bastion_host_name                   = local.bastion_host_name
+    resource_group_name                 = module.resource_group.name
+    virtual_network_name                = module.virtual_network.name
+    network_security_group_name         = module.network_security_group.name
+    key_vault_name                      = module.key_vault.name
+    storage_account_name                = module.storage_account.name
+    user_assigned_managed_identity_name = module.user_assigned_identity.name
+    virtual_machine_name                = module.virtual_machine.name
+    network_interface_name              = module.network_interface.name
+    bastion_host_public_ip_name         = module.bastion_host_public_ip.name
+    bastion_host_name                   = module.bastion_host.name
   }
 }
 
