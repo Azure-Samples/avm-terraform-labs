@@ -22,5 +22,5 @@ provider "azurerm" {
       prevent_deletion_if_contains_resources = false # This is to handle MCAPS or other policy driven resource creation.
     }
   }
-  resource_provider_registrations = "core"
+  resource_provider_registrations = "extended"
 }

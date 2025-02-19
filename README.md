@@ -33,6 +33,7 @@ This sample deploys the following features:
 * Subnets
 * Network security groups
 * Virtual machines
+* Azure Bastion Host
 * Managed identities
 * Key Vault
 * Storage account with customer managed key
@@ -58,31 +59,50 @@ The instructions for this sample are in the form of a Lab. Follow along with the
 
 ## Demo / Lab
 
-### Part 0 - Get the lab files
+### Part 0 - Get the lab files and login to Azure
 
 In this part we are going to get a local copy of the lab files for use in the rest of the lab.
 
-1. Create a new root  folder for the lab in a location of your choice.
+1. Create a new root folder for the lab in a location of your choice.
 1. Open a terminal and navigate to the new folder.
 1. Run `git clone https://github.com/Azure-Samples/avm-terraform-labs` to clone the lab files into the new folder, they will be in a subfolder called `avm-terraform-labs`.
 
-Your file structure should now look like this:
+      ```pwsh
+      git clone https://github.com/Azure-Samples/avm-terraform-labs
+      mkdir avm-lab
+      ```
+
+      Your file structure should now look like this:
   
       ```plaintext
       📂my-lab-folder
+      ┣ 📂avm-lab
       ┗ 📂avm-terraform-labs
       ```
+
+1. Open Visual Studio Code.
+
+      ```pwsh
+      code .
+      ```
+
+1. Open the VSCode Terminal and navigate to the `avm-lab` folder.
+
+      ```pwsh
+      cd avm-lab
+      ```
+
+1. Run `az login` to login to your Azure subscription.
+1. Run `az account show` to show the current subscription. Run `az account set --subscription <subscription-id>` to set the subscription if it is not the one you want to use.
+1. Set your subscription ID environment variable with `$env:ARM_SUBSCRIPTION_ID = $(az account show --query id -o tsv)`. This is required by the `azurerm` provider since v4.
 
 ### Part 1 - Base files and resources
 
 In this part we are going to setup our Terraform root module and deploy an Azure Resource Group and Log Analytics Workspace ready for the rest of the lab. In this part we introduce out first Azure Verified Module, the `avm-res-log-analytics-workspace` module.
 
-1. Create a new folder under your lab folder called `avm-lab`.
 1. Copy the files from the [part 1](labs/part01-base/) folder into the `avm-lab` folder.
 
       ```pwsh
-      # E.g. Using pwsh, run this from inside your top level lab folder
-      cd avm-lab
       copy ../avm-terraform-labs/labs/part01-base/* .
       ```
 
@@ -101,24 +121,30 @@ In this part we are going to setup our Terraform root module and deploy an Azure
       ┗ 📂avm-terraform-labs
       ```
 
-1. Open Visual Studio Code and open the `avm-lab` folder. Hint: `code .`
 1. Examine the `terraform` block in `terraform.tf` and note that we are referencing the `azurerm` and `random` providers.
 1. Examine the `locals.tf`, `variables.tf`, `outputs.tf` and `main.tf` files.
 1. Examine the `avm.log_analytics_workspace.tf` file and note the `source` and `version` properties.
-1. Create a file called `terraform.tfvars` and add the following code to it, ensuring you replace the placeholder for a valid Azure location of your choice (e.g. uksouth):
+1. Create an environment variable to set the location variable:
+
+      ```pwsh
+      $env:TF_VAR_location = "<azure region>"
+      ```
+
+      Replace `<azure region>` with a valid Azure location of your choice (e.g. uksouth).
+
+      ```pwsh
+      $env:TF_VAR_location = "uksouth"
+      ```
+
+1. Create a file called `terraform.tfvars` and add the following code to it:
 
       ```hcl
-      location = "<azure region>"
       tags = {
         type = "avm"
         env  = "demo"
       }
       ```
 
-1. Open a terminal in Visual Studio Code and ensure you are in the root of your `avm-lab` folder.
-1. Run `az login` to login to your Azure subscription.
-1. Run `az account show` to show the current subscription. Run `az account set --subscription <subscription-id>` to set the subscription if it is not the one you want to use.
-1. Set your subscription ID environment variable with `$env:ARM_SUBSCRIPTION_ID = $(az account show --query id -o tsv)`. This is required by the `azurerm` provider since v4.
 1. Run `terraform init` to initialize the Terraform configuration.
 1. Run `terraform plan -out tfplan` to see what resources will be created and create a plan file.
 1. Run `terraform apply tfplan` to create the resources based on the plan file.
@@ -152,8 +178,6 @@ In this part we are going to add a virtual network and subnets to our Terraform 
 1. Copy the files from the [part 2](labs/part02-vnet/) folder into the `avm-lab` folder. This will add some new files and replace some files.
 
       ```pwsh
-      # E.g. Using pwsh, run this from inside your top level lab folder
-      cd avm-lab
       copy ../avm-terraform-labs/labs/part02-virtual-network/* .
       ```
 
@@ -183,7 +207,6 @@ In this part we are going to add a virtual network and subnets to our Terraform 
 1. Open your `terraform.tfvars` and update it with the following code, ensuring you replace the placeholder for a valid Azure location of your choice (e.g. uksouth):
 
       ```hcl
-      location               = "<azure region>"
       address_space_start_ip = "10.0.0.0"
       address_space_size     = 22
       subnets = {
