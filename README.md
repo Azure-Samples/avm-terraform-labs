@@ -151,7 +151,7 @@ In this part we are going to setup our Terraform root module and deploy an Azure
 1. If your run is successful, you will see:
   
       ```plaintext
-      Apply complete! Resources: 2 added, 0 changed, 0 destroyed.
+      Apply complete! Resources: 7 added, 0 changed, 0 destroyed.
       ```
 
 1. Take note of the outputs from the `terraform apply` command, they should look like this:
@@ -197,6 +197,7 @@ In this part we are going to add a virtual network and subnets to our Terraform 
       ┃ ┣ 📜.gitignore
       ┃ ┣ 📜.terraform.lock.hcl
       ┃ ┣ 📜avm.log_analytics_workspace.tf
+      ┃ ┣ 📜avm.nat_gateway.tf 
       ┃ ┣ 📜avm.network_security_group.tf
       ┃ ┣ 📜avm.virtual_network.tf
       ┃ ┣ 📜locals.tf
@@ -295,7 +296,7 @@ In this part we are going to add a Virtual Machine to our Terraform configuratio
 1. Run `terraform init` to install the AVM modules for Virtual Machine and Role Assignments.
 1. Apply the changes with Terraform. NOTE: We are applying this now, because the bastion can take a few minutes to deploy.
 1. Navigate to the `Source Control` tab in Visual Studio Code and review the changes to the files.
-1. Open the `avm.virtual-machine.tf` file and look at each of the properties, paying close attention to the `admin_credential_key_vault_resource_id` and `network_interfaces` variables.
+1. Open the `avm.virtual-machine.tf` file and look at each of the properties, paying close attention to the `generated_secrets_key_vault_secret_config` and `network_interfaces` variables.
 1. Apply the changes with Terraform: `terraform apply -auto-approve`.
 1. Review the deployed resources in the Azure Portal.
 1. Commit the changes to git: `git add . && git commit -m "Add virtual machine and bastion"`.
