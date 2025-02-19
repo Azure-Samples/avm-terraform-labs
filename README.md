@@ -312,7 +312,7 @@ In this part we are going to connect to the virtual machine via the Azure Bastio
 1. Select you subscription from the `Subscription` drop down.
 1. Select the Key Vault you created in the lab in the `Azure Key Vault` drop down.
 1. Select the secret you created in the lab in the `Azure Key Vault Secret` drop down.
-1. Click `Connect`. You may see a pop-up blocked message, click on the pop-up blocked icon in the address bar and select `Always allow pop-ups and redirects from <portal.azure.com>`.
+1. Click `Connect`. You may see a pop-up blocked message, click on the pop-up blocked icon in the address bar and select `Always allow pop-ups and redirects from https://portal.azure.com`.
 1. A new browser window will open with a terminal session to the VM.
 
 ### Part 7 - Install the Azure CLI and login
