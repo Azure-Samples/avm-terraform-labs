@@ -4,7 +4,6 @@ locals {
     workload    = var.resource_name_workload
     environment = var.resource_name_environment
     location    = var.location
-    uniqueness  = random_string.unique_name.id
     sequence    = format("%03d", var.resource_name_sequence_start)
   }
 
