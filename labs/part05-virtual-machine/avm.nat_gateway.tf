@@ -4,10 +4,10 @@ module "nat_gateway" {
 
   resource_group_name = module.resource_group.name
   location            = var.location
-  name                = local.nat_gateway_name
+  name                = local.resource_names.nat_gateway_name
   public_ips = {
     default = {
-      name = local.nat_public_ip_name
+      name = local.resource_names.nat_gateway_public_ip_name
     }
   }
 }

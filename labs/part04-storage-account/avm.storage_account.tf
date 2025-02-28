@@ -4,7 +4,7 @@ module "storage_account" {
 
   account_replication_type          = "LRS"
   location                          = var.location
-  name                              = local.storage_account_name
+  name                              = local.resource_names.storage_account_name
   resource_group_name               = module.resource_group.name
   infrastructure_encryption_enabled = true
 

@@ -6,7 +6,7 @@ module "virtual_network" {
   subnets             = local.subnets
   address_space       = [local.virtual_network_address_space]
   location            = var.location
-  name                = local.virtual_network_name
+  name                = local.resource_names.virtual_network_name
   diagnostic_settings = local.diagnostic_settings
   tags                = var.tags
 }

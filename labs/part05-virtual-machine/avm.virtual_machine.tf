@@ -4,7 +4,7 @@ module "virtual_machine" {
 
   resource_group_name        = module.resource_group.name
   os_type                    = "linux"
-  name                       = local.virtual_machine_name
+  name                       = local.resource_names.virtual_machine_name
   sku_size                   = "Standard_B1ls"
   location                   = var.location
   zone                       = "1"
@@ -27,7 +27,7 @@ module "virtual_machine" {
 
   network_interfaces = {
     private = {
-      name = local.network_interface_name
+      name = local.resource_names.network_interface_name
       ip_configurations = {
         private = {
           name                          = "private"
