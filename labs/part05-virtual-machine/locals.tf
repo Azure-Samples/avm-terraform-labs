@@ -11,7 +11,7 @@ locals {
   key_vault_name                      = "kv-demo-${format("%.16s", local.unique_postfix)}"
   storage_account_name                = replace("stdemo${local.unique_postfix}", "-", "")
   user_assigned_managed_identity_name = "uami-demo-${local.unique_postfix}"
-  virtual_machine_name                = "vm-demo-01"
+  virtual_machine_name                = "vm-demo-01" # NOTE: This is hardcoded as our lab provider only supports hard-coded VM names as part of their cost restrictions. You should make it dynamic in your own code.
   network_interface_name              = "nic-demo-${local.unique_postfix}"
   bastion_host_public_ip_name         = "pip-demo-${local.unique_postfix}"
   bastion_host_name                   = "bastion-demo-${local.unique_postfix}"
