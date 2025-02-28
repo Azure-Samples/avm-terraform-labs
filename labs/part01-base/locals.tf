@@ -1,7 +1,12 @@
-# Define resource names
+# Calculate resource names
 locals {
-  unique_postfix = random_pet.unique_name.id
+  name_replacements = {
+    workload    = var.resource_name_workload
+    environment = var.resource_name_environment
+    location    = var.location
+    uniqueness  = random_string.unique_name.id
+    sequence    = format("%03d", var.resource_name_sequence_start)
+  }
 
-  resource_group_name          = "rg-demo-${local.unique_postfix}"
-  log_analytics_workspace_name = "law-demo-${local.unique_postfix}"
+  resource_names = { for key, value in var.resource_name_templates : key => templatestring(value, local.name_replacements) }
 }

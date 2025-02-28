@@ -3,7 +3,7 @@ module "network_security_group" {
   version = "0.3.0"
 
   resource_group_name = module.resource_group.name
-  name                = local.network_security_group_name
+  name                = local.resource_names.network_security_group_name
   location            = var.location
 
   security_rules = {

@@ -1,16 +1,14 @@
-# Define resource names
+# Calculate resource names
 locals {
-  unique_postfix = random_pet.unique_name.id
+  name_replacements = {
+    workload    = var.resource_name_workload
+    environment = var.resource_name_environment
+    location    = var.location
+    uniqueness  = random_string.unique_name.id
+    sequence    = format("%03d", var.resource_name_sequence_start)
+  }
 
-  resource_group_name                 = "rg-demo-${local.unique_postfix}"
-  log_analytics_workspace_name        = "law-demo-${local.unique_postfix}"
-  virtual_network_name                = "vnet-demo-${local.unique_postfix}"
-  network_security_group_name         = "nsg-demo-${local.unique_postfix}"
-  nat_gateway_name                    = "natgw-demo-${local.unique_postfix}"
-  nat_public_ip_name                  = "natpip-demo-${local.unique_postfix}"
-  key_vault_name                      = "kv-demo-${format("%.16s", local.unique_postfix)}"
-  storage_account_name                = replace("stdemo${local.unique_postfix}", "-", "")
-  user_assigned_managed_identity_name = "uami-demo-${local.unique_postfix}"
+  resource_names = { for key, value in var.resource_name_templates : key => templatestring(value, local.name_replacements) }
 }
 
 # Calculate the CIDR for the subnets

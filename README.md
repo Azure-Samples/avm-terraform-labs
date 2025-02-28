@@ -136,6 +136,8 @@ In this part we are going to setup our Terraform root module and deploy an Azure
       $env:TF_VAR_location = "uksouth"
       ```
 
+      > IMPORTANT: If you are following this lab in Skillable, the region must be set to `uksouth` or you'll get a policy error.
+
 1. Create a file called `terraform.tfvars` and add the following code to it:
 
       ```hcl
