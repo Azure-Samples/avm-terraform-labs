@@ -61,6 +61,7 @@ variable "resource_name_templates" {
     nat_gateway_public_ip_name          = "pip-nat-$${workload}-$${environment}-$${location}-$${sequence}"
     key_vault_name                      = "kv$${workload}$${environment}$${location}$${sequence}$${uniqueness}"
     storage_account_name                = "sto$${workload}$${environment}$${location}$${sequence}$${uniqueness}"
+
     user_assigned_managed_identity_name = "uami-$${workload}-$${environment}-$${location}-$${sequence}"
     virtual_machine_name                = "vm-$${workload}-$${environment}-$${location}-$${sequence}"
     network_interface_name              = "nic-$${workload}-$${environment}-$${location}-$${sequence}"
