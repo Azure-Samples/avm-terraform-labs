@@ -161,8 +161,13 @@ In this part we are going to setup our Terraform root module and deploy an Azure
       ```plaintext
       Outputs:
 
-      names = {
-        "resource_group_name" = "rg-demo-excited-eel"
+      resource_ids = {
+        "log_analytics_workspace" = "/subscriptions/b857908d-3f5c-4477-91c1-0fbd08df4e88/resourceGroups/rg-demo-dev-uksouth-001/providers/Microsoft.OperationalInsights/workspaces/law-demo-dev-uksouth-001"
+        "resource_group" = "/subscriptions/b857908d-3f5c-4477-91c1-0fbd08df4e88/resourceGroups/rg-demo-dev-uksouth-001"
+      }
+      resource_names = {
+        "log_analytics_workspace_name" = "law-demo-dev-uksouth-001"
+        "resource_group_name" = "rg-demo-dev-uksouth-001"
       }
       ```
 
