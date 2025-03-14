@@ -73,7 +73,7 @@ In this part we are going to get a local copy of the lab files for use in the re
       ```
 
       Your file structure should now look like this:
-  
+
       ```plaintext
       📂my-lab-folder
       ┣ 📂avm-lab
@@ -151,7 +151,7 @@ In this part we are going to setup our Terraform root module and deploy an Azure
 1. Run `terraform plan -out tfplan` to see what resources will be created and create a plan file.
 1. Run `terraform apply tfplan` to create the resources based on the plan file.
 1. If your run is successful, you will see:
-  
+
       ```plaintext
       Apply complete! Resources: 7 added, 0 changed, 0 destroyed.
       ```
@@ -204,7 +204,7 @@ In this part we are going to add a virtual network and subnets to our Terraform 
       ┃ ┣ 📜.gitignore
       ┃ ┣ 📜.terraform.lock.hcl
       ┃ ┣ 📜avm.log_analytics_workspace.tf
-      ┃ ┣ 📜avm.nat_gateway.tf 
+      ┃ ┣ 📜avm.nat_gateway.tf
       ┃ ┣ 📜avm.network_security_group.tf
       ┃ ┣ 📜avm.virtual_network.tf
       ┃ ┣ 📜locals.tf
@@ -221,8 +221,7 @@ In this part we are going to add a virtual network and subnets to our Terraform 
 1. Open your `terraform.tfvars` and update it with the following code, ensuring you replace the placeholder for a valid Azure location of your choice (e.g. uksouth):
 
       ```hcl
-      address_space_start_ip = "10.0.0.0"
-      address_space_size     = 22
+      address_space = "10.0.0.0/22"
       subnets = {
         AzureBastionSubnet = {
           size                       = 26
@@ -248,6 +247,7 @@ In this part we are going to add a virtual network and subnets to our Terraform 
 
 1. Run `terraform init` to install the AVM module for Virtual Networks.
 1. Navigate to the `Source Control` tab in Visual Studio Code and review the changes to the files.
+1. Open the `avm.ip_addresses.tf` file and look at note the use of a utility module here, pay close attention to the `source` and `version` properties.
 1. Open the `avm.virtual-network.tf` file and look at each of the properties, paying close attention to the `source` and `version` properties.
 1. Examine the diagnostics settings in `locals.tf` and take note that this same setting will be applied to all of the AVM modules in the lab.
 1. In order to find more detail about AVM modules, you can navigate to their documentation. For example, you can find the documentation for the Virtual Network module [here](https://registry.terraform.io/modules/Azure/avm-res-network-virtualnetwork/azurerm/latest). From there you can navigate to the source code and see the module's implementation [here](https://github.com/Azure/terraform-azurerm-avm-res-network-virtualnetwork).
