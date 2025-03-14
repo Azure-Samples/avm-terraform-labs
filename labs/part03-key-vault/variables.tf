@@ -53,23 +53,18 @@ variable "resource_name_templates" {
   type        = map(string)
   description = "A map of resource names to use"
   default = {
-    resource_group_name                 = "rg-$${workload}-$${environment}-$${location}-$${sequence}"
-    log_analytics_workspace_name        = "law-$${workload}-$${environment}-$${location}-$${sequence}"
-    virtual_network_name                = "vnet-$${workload}-$${environment}-$${location}-$${sequence}"
-    network_security_group_name         = "nsg-$${workload}-$${environment}-$${location}-$${sequence}"
-    nat_gateway_name                    = "nat-$${workload}-$${environment}-$${location}-$${sequence}"
-    nat_gateway_public_ip_name          = "pip-nat-$${workload}-$${environment}-$${location}-$${sequence}"
-    key_vault_name                      = "kv$${workload}$${environment}$${location}$${sequence}$${uniqueness}"
+    resource_group_name          = "rg-$${workload}-$${environment}-$${location}-$${sequence}"
+    log_analytics_workspace_name = "law-$${workload}-$${environment}-$${location}-$${sequence}"
+    virtual_network_name         = "vnet-$${workload}-$${environment}-$${location}-$${sequence}"
+    network_security_group_name  = "nsg-$${workload}-$${environment}-$${location}-$${sequence}"
+    nat_gateway_name             = "nat-$${workload}-$${environment}-$${location}-$${sequence}"
+    nat_gateway_public_ip_name   = "pip-nat-$${workload}-$${environment}-$${location}-$${sequence}"
+    key_vault_name               = "kv$${workload}$${environment}$${location}$${sequence}$${uniqueness}"
   }
 }
 
-variable "address_space_start_ip" {
+variable "address_space" {
   type        = string
-  description = "The address space that is used the virtual network"
-}
-
-variable "address_space_size" {
-  type        = number
   description = "The address space that is used the virtual network"
 }
 

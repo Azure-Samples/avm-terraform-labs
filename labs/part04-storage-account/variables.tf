@@ -64,13 +64,9 @@ variable "resource_name_templates" {
     user_assigned_managed_identity_name = "uami-$${workload}-$${environment}-$${location}-$${sequence}"
   }
 }
-variable "address_space_start_ip" {
-  type        = string
-  description = "The address space that is used the virtual network"
-}
 
-variable "address_space_size" {
-  type        = number
+variable "address_space" {
+  type        = string
   description = "The address space that is used the virtual network"
 }
 

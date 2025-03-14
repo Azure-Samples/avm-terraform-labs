@@ -61,13 +61,8 @@ variable "resource_name_templates" {
   }
 }
 
-variable "address_space_start_ip" {
+variable "address_space" {
   type        = string
-  description = "The address space that is used the virtual network"
-}
-
-variable "address_space_size" {
-  type        = number
   description = "The address space that is used the virtual network"
 }
 
