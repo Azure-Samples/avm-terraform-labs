@@ -1,12 +1,13 @@
 module "storage_account" {
   source  = "Azure/avm-res-storage-storageaccount/azurerm"
-  version = "0.5.0"
+  version = "~> 0.5"
 
   account_replication_type          = "LRS"
   location                          = var.location
-  name                              = local.resource_names.storage_account_name
+  name                              = module.naming.storage_account.name_unique
   resource_group_name               = module.resource_group.name
   infrastructure_encryption_enabled = true
+  shared_access_key_enabled         = true # Note: not a best practice
 
   managed_identities = {
     system_assigned            = true

@@ -1,8 +1,8 @@
 module "bastion_host" {
   source  = "Azure/avm-res-network-bastionhost/azurerm"
-  version = "0.4.0"
+  version = "~> 0.6"
 
-  name                   = local.resource_names.bastion_host_name
+  name                   = module.naming.bastion_host.name
   location               = var.location
   resource_group_name    = module.resource_group.name
   copy_paste_enabled     = true

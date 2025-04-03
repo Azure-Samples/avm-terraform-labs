@@ -1,14 +1,19 @@
-resource "random_string" "unique_name" {
-  length  = 3
-  special = false
-  upper   = false
-  numeric = false
+module "naming" {
+  source  = "Azure/naming/azurerm"
+  version = "~> 0.4"
+
+  suffix = [
+    var.resource_name_workload,
+    var.resource_name_environment
+  ]
+  unique-length = 8
 }
 
 module "resource_group" {
-  source   = "Azure/avm-res-resources-resourcegroup/azurerm"
-  version  = "0.2.1"
+  source  = "Azure/avm-res-resources-resourcegroup/azurerm"
+  version = "~> 0.2"
+
   location = var.location
-  name     = local.resource_names.resource_group_name
+  name     = module.naming.resource_group.name_unique
   tags     = var.tags
 }

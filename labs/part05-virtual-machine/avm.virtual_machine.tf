@@ -1,10 +1,10 @@
 module "virtual_machine" {
   source  = "Azure/avm-res-compute-virtualmachine/azurerm"
-  version = "0.18.0"
+  version = "~> 0.18"
 
   resource_group_name        = module.resource_group.name
   os_type                    = "linux"
-  name                       = local.resource_names.virtual_machine_name
+  name                       = module.naming.virtual_machine.name
   sku_size                   = "Standard_B1s"
   location                   = var.location
   zone                       = "1"
@@ -27,7 +27,7 @@ module "virtual_machine" {
 
   network_interfaces = {
     private = {
-      name = local.resource_names.network_interface_name
+      name = module.naming.network_interface.name
       ip_configurations = {
         private = {
           name                          = "private"
