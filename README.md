@@ -113,7 +113,6 @@ In this part we are going to setup our Terraform root module and deploy an Azure
       ┣ 📂avm-lab
       ┃ ┣ 📜.gitignore
       ┃ ┣ 📜avm.log_analytics_workspace.tf
-      ┃ ┣ 📜locals.tf
       ┃ ┣ 📜main.tf
       ┃ ┣ 📜outputs.tf
       ┃ ┣ 📜terraform.tf
@@ -122,7 +121,7 @@ In this part we are going to setup our Terraform root module and deploy an Azure
       ```
 
 1. Examine the `terraform` block in `terraform.tf` and note that we are referencing the `azurerm` and `random` providers.
-1. Examine the `locals.tf`, `variables.tf`, `outputs.tf` and `main.tf` files.
+1. Examine the `variables.tf`, `outputs.tf` and `main.tf` files.
 1. Examine the `avm.log_analytics_workspace.tf` file and note the `source` and `version` properties.
 1. Create an environment variable to set the location variable:
 
@@ -153,7 +152,7 @@ In this part we are going to setup our Terraform root module and deploy an Azure
 1. If your run is successful, you will see:
 
       ```plaintext
-      Apply complete! Resources: 7 added, 0 changed, 0 destroyed.
+      Apply complete! Resources: 8 added, 0 changed, 0 destroyed.
       ```
 
 1. Take note of the outputs from the `terraform apply` command, they should look like this:
@@ -162,12 +161,12 @@ In this part we are going to setup our Terraform root module and deploy an Azure
       Outputs:
 
       resource_ids = {
-        "log_analytics_workspace" = "/subscriptions/b857908d-3f5c-4477-91c1-0fbd08df4e88/resourceGroups/rg-demo-dev-uksouth-001/providers/Microsoft.OperationalInsights/workspaces/law-demo-dev-uksouth-001"
-        "resource_group" = "/subscriptions/b857908d-3f5c-4477-91c1-0fbd08df4e88/resourceGroups/rg-demo-dev-uksouth-001"
+        "log_analytics_workspace" = "/subscriptions/SUBSCRIPTION-ID-HERE/resourceGroups/rg-demo-dev-cc4hwd5m/providers/Microsoft.OperationalInsights/workspaces/log-demo-dev-cc4hwd5m"
+        "resource_group" = "/subscriptions/SUBSCRIPTION-ID-HERE/resourceGroups/rg-demo-dev-cc4hwd5m"
       }
       resource_names = {
-        "log_analytics_workspace_name" = "law-demo-dev-uksouth-001"
-        "resource_group_name" = "rg-demo-dev-uksouth-001"
+        "log_analytics_workspace" = "log-demo-dev-cc4hwd5m"
+        "resource_group" = "rg-demo-dev-cc4hwd5m"
       }
       ```
 
