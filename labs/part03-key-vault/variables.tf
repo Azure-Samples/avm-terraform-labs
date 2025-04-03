@@ -39,30 +39,6 @@ variable "resource_name_environment" {
   }
 }
 
-variable "resource_name_sequence_start" {
-  type        = number
-  description = "The number to use for the resource names"
-  default     = 1
-  validation {
-    condition     = var.resource_name_sequence_start >= 1 && var.resource_name_sequence_start <= 999
-    error_message = "The number must be between 1 and 999"
-  }
-}
-
-variable "resource_name_templates" {
-  type        = map(string)
-  description = "A map of resource names to use"
-  default = {
-    resource_group_name          = "rg-$${workload}-$${environment}-$${location}-$${sequence}"
-    log_analytics_workspace_name = "law-$${workload}-$${environment}-$${location}-$${sequence}"
-    virtual_network_name         = "vnet-$${workload}-$${environment}-$${location}-$${sequence}"
-    network_security_group_name  = "nsg-$${workload}-$${environment}-$${location}-$${sequence}"
-    nat_gateway_name             = "nat-$${workload}-$${environment}-$${location}-$${sequence}"
-    nat_gateway_public_ip_name   = "pip-nat-$${workload}-$${environment}-$${location}-$${sequence}"
-    key_vault_name               = "kv$${workload}$${environment}$${location}$${sequence}$${uniqueness}"
-  }
-}
-
 variable "address_space" {
   type        = string
   description = "The address space that is used the virtual network"
