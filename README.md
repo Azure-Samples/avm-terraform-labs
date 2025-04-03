@@ -202,6 +202,7 @@ In this part we are going to add a virtual network and subnets to our Terraform 
       ┃ ┣ 📂.terraform
       ┃ ┣ 📜.gitignore
       ┃ ┣ 📜.terraform.lock.hcl
+      ┃ ┣ 📜avm.ip_addresses.tf
       ┃ ┣ 📜avm.log_analytics_workspace.tf
       ┃ ┣ 📜avm.nat_gateway.tf
       ┃ ┣ 📜avm.network_security_group.tf
