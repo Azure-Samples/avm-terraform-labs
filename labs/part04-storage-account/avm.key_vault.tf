@@ -1,8 +1,8 @@
 module "key_vault" {
   source  = "Azure/avm-res-keyvault-vault/azurerm"
-  version = "0.9.1"
+  version = "~> 0.10.0"
 
-  name                          = local.resource_names.key_vault_name
+  name                          = module.naming.key_vault.name_unique
   location                      = var.location
   resource_group_name           = module.resource_group.name
   tenant_id                     = data.azurerm_client_config.current.tenant_id

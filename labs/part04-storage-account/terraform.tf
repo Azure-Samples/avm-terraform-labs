@@ -1,17 +1,13 @@
 terraform {
-  required_version = "~> 1.10"
+  required_version = "~> 1.11"
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "~> 4.19"
+      version = "~> 4.25"
     }
     random = {
       source  = "hashicorp/random"
-      version = "~> 3.6"
-    }
-    http = {
-      source  = "hashicorp/http"
-      version = "~> 3.4"
+      version = "~> 3.7"
     }
   }
 }
@@ -23,5 +19,4 @@ provider "azurerm" {
     }
   }
   resource_provider_registrations = "extended"
-  storage_use_azuread             = true
 }
