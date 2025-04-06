@@ -11,6 +11,20 @@ variable "location" {
   }
 }
 
+variable "resource_name_location_short" {
+  type        = string
+  description = "The short name segment for the location"
+  default     = ""
+  validation {
+    condition     = length(var.resource_name_location_short) == 0 || can(regex("^[a-z]+$", var.resource_name_location_short))
+    error_message = "The short name segment for the location must only contain lowercase letters"
+  }
+  validation {
+    condition     = length(var.resource_name_location_short) <= 3
+    error_message = "The short name segment for the location must be 3 characters or less"
+  }
+}
+
 variable "resource_name_workload" {
   type        = string
   description = "The name segment for the workload"
@@ -59,8 +73,8 @@ variable "resource_name_templates" {
     network_security_group_name         = "nsg-$${workload}-$${environment}-$${location}-$${sequence}"
     nat_gateway_name                    = "nat-$${workload}-$${environment}-$${location}-$${sequence}"
     nat_gateway_public_ip_name          = "pip-nat-$${workload}-$${environment}-$${location}-$${sequence}"
-    key_vault_name                      = "kv$${workload}$${environment}$${location}$${sequence}$${uniqueness}"
-    storage_account_name                = "sto$${workload}$${environment}$${location}$${sequence}$${uniqueness}"
+    key_vault_name                      = "kv$${workload}$${environment}$${location_short}$${sequence}$${uniqueness}"
+    storage_account_name                = "sto$${workload}$${environment}$${location_short}$${sequence}$${uniqueness}"
     user_assigned_managed_identity_name = "uami-$${workload}-$${environment}-$${location}-$${sequence}"
     virtual_machine_name                = "vm-$${workload}-$${environment}-$${location}-$${sequence}"
     network_interface_name              = "nic-$${workload}-$${environment}-$${location}-$${sequence}"
@@ -92,4 +106,69 @@ variable "enable_encryption_at_host" {
   type        = bool
   description = "Enable encryption at host"
   default     = false
+}
+
+variable "region_short_name_mapping" {
+  type        = map(string)
+  description = "A map of region short names to full names (this will be replaced by a utlity module function in the future)"
+  default = {
+    "uaenorth" : "uan",
+    "northcentralus" : "ncus",
+    "malaysiawest" : "myw",
+    "eastus" : "eus",
+    "uksouth" : "uks",
+    "westcentralus" : "wcus",
+    "israelcentral" : "ilc",
+    "southeastasia" : "sea",
+    "malaysiasouth" : "mys",
+    "koreacentral" : "krc",
+    "northeurope" : "ne",
+    "australiaeast" : "ae",
+    "southafricanorth" : "san",
+    "norwaywest" : "nww",
+    "norwayeast" : "nwe",
+    "westus3" : "wus3",
+    "eastus2euap" : "ecy",
+    "centralus" : "cus",
+    "mexicocentral" : "mxc",
+    "canadacentral" : "cnc",
+    "japaneast" : "jpe",
+    "swedencentral" : "sdc",
+    "taiwannorth" : "twn",
+    "germanynorth" : "gn",
+    "centralindia" : "inc",
+    "westindia" : "inw",
+    "newzealandnorth" : "nzn",
+    "australiacentral" : "acl",
+    "ukwest" : "ukw",
+    "germanywestcentral" : "gwc",
+    "brazilsouth" : "brs",
+    "francecentral" : "frc",
+    "brazilsoutheast" : "bse",
+    "westus2" : "wus2",
+    "eastus2" : "eus2",
+    "centraluseuap" : "ccy",
+    "australiacentral2" : "acl2",
+    "francesouth" : "frs",
+    "southafricawest" : "saw",
+    "koreasouth" : "krs",
+    "southindia" : "ins",
+    "canadaeast" : "cne",
+    "qatarcentral" : "qac",
+    "spaincentral" : "spc",
+    "westeurope" : "we",
+    "japanwest" : "jpw",
+    "southcentralus" : "scus",
+    "polandcentral" : "plc",
+    "switzerlandwest" : "szw",
+    "australiasoutheast" : "ase",
+    "switzerlandnorth" : "szn",
+    "italynorth" : "itn",
+    "uaecentral" : "uac",
+    "eastasia" : "ea",
+    "chilecentral" : "clc",
+    "westus" : "wus",
+    "swedensouth" : "sds",
+    "indonesiacentral" : "idc"
+  }
 }
