@@ -153,7 +153,7 @@ In this part we are going to setup our Terraform root module and deploy an Azure
 1. If your run is successful, you will see:
 
       ```plaintext
-      Apply complete! Resources: 7 added, 0 changed, 0 destroyed.
+      Apply complete! Resources: 6 added, 0 changed, 0 destroyed.
       ```
 
 1. Take note of the outputs from the `terraform apply` command, they should look like this:
