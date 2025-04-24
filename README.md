@@ -218,7 +218,7 @@ In this part we are going to add a virtual network and subnets to our Terraform 
       ┗ 📂avm-terraform-labs
       ```
 
-1. Open your `terraform.tfvars` and update it with the following code, ensuring you replace the placeholder for a valid Azure location of your choice (e.g. uksouth):
+1. Open your `terraform.tfvars` and update it with the following code:
 
       ```hcl
       address_space = "10.0.0.0/22"
