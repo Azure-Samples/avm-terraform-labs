@@ -357,6 +357,7 @@ Finally we will clean up everything we have created in the lab.
 
 1. Run `terraform destroy` from the Visual Studio Code terminal to remove the resources created by Terraform.
 1. When prompted type `yes` and press `Enter` to confirm the destruction.
+1. Run `Remove-Item Env:TF_VAR_location` to remove the location environment variable.
 
 ## Resources
 
