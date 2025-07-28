@@ -247,7 +247,7 @@ In this part we are going to add a virtual network and subnets to our Terraform 
       }
       ```
 
-1. Run `terraform init` to install the AVM module for Virtual Networks.
+1. Run `terraform init` to install the AVM module for Virtual Networks and other new resources related to networking.
 1. Navigate to the `Source Control` tab in Visual Studio Code and review the changes to the files.
 1. Open the `avm.ip_addresses.tf` file and look at note the use of a utility module here, pay close attention to the `source` and `version` properties. A utility module is a helper module that doesn't deploy anything itself, but is used to calculate common values.
 1. Open the `avm.virtual-network.tf` file and look at each of the properties, paying close attention to the `source` and `version` properties.
