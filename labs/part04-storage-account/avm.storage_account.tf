@@ -1,6 +1,6 @@
 module "storage_account" {
   source  = "Azure/avm-res-storage-storageaccount/azurerm"
-  version = "0.5.0"
+  version = "0.6.4"
 
   account_replication_type          = "LRS"
   location                          = var.location
