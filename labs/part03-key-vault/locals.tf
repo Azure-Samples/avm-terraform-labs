@@ -31,7 +31,7 @@ locals {
 locals {
   diagnostic_settings = {
     sendToLogAnalytics = {
-      name                  = "sendToLogAnalytics"
+      name                  = "custom"
       workspace_resource_id = module.log_analytics_workspace.resource_id
     }
   }

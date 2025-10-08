@@ -14,6 +14,7 @@ module "bastion_host" {
   tunneling_enabled      = true
 
   ip_configuration = {
+    create_public_ip     = false
     name                 = "ipconfig"
     subnet_id            = module.virtual_network.subnets["AzureBastionSubnet"].resource_id
     public_ip_address_id = module.bastion_host_public_ip.public_ip_id
