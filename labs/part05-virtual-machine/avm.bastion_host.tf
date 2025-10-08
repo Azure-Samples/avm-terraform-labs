@@ -1,6 +1,6 @@
 module "bastion_host" {
   source  = "Azure/avm-res-network-bastionhost/azurerm"
-  version = "0.4.0"
+  version = "0.8.1"
 
   name                   = local.resource_names.bastion_host_name
   location               = var.location

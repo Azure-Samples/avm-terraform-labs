@@ -1,6 +1,6 @@
 module "key_vault" {
   source  = "Azure/avm-res-keyvault-vault/azurerm"
-  version = "0.9.1"
+  version = "0.10.1"
 
   name                          = local.resource_names.key_vault_name
   location                      = var.location
