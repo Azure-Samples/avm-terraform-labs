@@ -29,6 +29,7 @@ This is a lab based sample that demonstrates how to use the Azure Verified Modul
 
 This sample deploys the following features:
 
+* Log Analytics Workspace
 * Virtual network
 * Subnets
 * Network security groups
