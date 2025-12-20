@@ -5,7 +5,7 @@ module "virtual_machine" {
   resource_group_name        = module.resource_group.name
   os_type                    = "linux"
   name                       = local.resource_names.virtual_machine_name
-  sku_size                   = "Standard_B1s"
+  sku_size                   = "Standard_D2s_v4"
   location                   = var.location
   zone                       = "1"
   encryption_at_host_enabled = var.enable_encryption_at_host # Turned off by default in this demo as requires the Microsoft.Compute/EncryptionAtHost feature to be enabled on the subscription
