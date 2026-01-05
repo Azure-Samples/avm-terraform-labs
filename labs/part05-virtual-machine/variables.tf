@@ -107,3 +107,18 @@ variable "enable_encryption_at_host" {
   description = "Enable encryption at host"
   default     = false
 }
+
+variable "virtual_machine_sku" {
+  type        = string
+  description = "The size of the virtual machine to create"
+}
+
+variable "virtual_machine_image" {
+  type = object({
+    publisher = string
+    offer     = string
+    sku       = string
+    version   = string
+  })
+  description = "The image reference for the virtual machine"
+}
