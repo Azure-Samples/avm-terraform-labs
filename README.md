@@ -133,13 +133,11 @@ The Log Analytics Workspace is used as the target for diagnostic settings for al
       $env:TF_VAR_location = "<azure region>"
       ```
 
-      Replace `<azure region>` with a valid Azure location of your choice (e.g. uksouth).
+      Replace `<azure region>` with a valid Azure location of your choice (e.g. swedencentral).
 
       ```pwsh
-      $env:TF_VAR_location = "uksouth"
+      $env:TF_VAR_location = "swedencentral"
       ```
-
-      > IMPORTANT: If you are following this lab in Skillable, the region must be set to `uksouth` or you'll get a policy error.
 
 1. Create a file called `terraform.tfvars` and add the following code to it:
 
@@ -165,12 +163,12 @@ The Log Analytics Workspace is used as the target for diagnostic settings for al
       Outputs:
 
       resource_ids = {
-        "log_analytics_workspace" = "/subscriptions/b857908d-3f5c-4477-91c1-0fbd08df4e88/resourceGroups/rg-demo-dev-uksouth-001/providers/Microsoft.OperationalInsights/workspaces/law-demo-dev-uksouth-001"
-        "resource_group" = "/subscriptions/b857908d-3f5c-4477-91c1-0fbd08df4e88/resourceGroups/rg-demo-dev-uksouth-001"
+        "log_analytics_workspace" = "/subscriptions/b857908d-3f5c-4477-91c1-0fbd08df4e88/resourceGroups/rg-demo-dev-swedencentral-001/providers/Microsoft.OperationalInsights/workspaces/law-demo-dev-swedencentral-001"
+        "resource_group" = "/subscriptions/b857908d-3f5c-4477-91c1-0fbd08df4e88/resourceGroups/rg-demo-dev-swedencentral-001"
       }
       resource_names = {
-        "log_analytics_workspace_name" = "law-demo-dev-uksouth-001"
-        "resource_group_name" = "rg-demo-dev-uksouth-001"
+        "log_analytics_workspace_name" = "law-demo-dev-swedencentral-001"
+        "resource_group_name" = "rg-demo-dev-swedencentral-001"
       }
       ```
 
@@ -301,6 +299,20 @@ In this part we are going to add a Virtual Machine to our Terraform configuratio
 
       ```pwsh
       copy ../avm-terraform-labs/labs/part05-virtual-machine/* .
+      ```
+
+1. Add the following variables to your `terraform.tfvars` file:
+
+      >NOTE: You may need to choose a different virtual machine sku depending on availability in your chosen region. If you are running this lab in Skillable, SKUs are restricted to names beginning with `Standard_B2*` or `Standard_D2*` only.
+
+      ```hcl
+      virtual_machine_sku = "Standard_D2s_v4"
+      virtual_machine_image = {
+        publisher = "Canonical"
+        offer     = "0001-com-ubuntu-server-jammy"
+        sku       = "22_04-lts-gen2"
+        version   = "latest"
+      }
       ```
 
 1. Run `terraform init` to install the AVM modules for Virtual Machine and Role Assignments.
