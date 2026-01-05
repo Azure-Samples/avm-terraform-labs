@@ -16,7 +16,7 @@ locals {
 locals {
   subnets = { for key, value in var.subnets : key => {
     name             = key
-    address_prefixes = [module.avm-utl-network-ip-addresses.address_prefixes[key]]
+    address_prefixes = [module.ip_addresses.address_prefixes[key]]
     network_security_group = value.has_network_security_group ? {
       id = module.network_security_group.resource_id
     } : null
