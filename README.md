@@ -99,7 +99,7 @@ In this part we are going to get a local copy of the lab files for use in the re
 
 ### Part 1 - Base files and resources
 
-In this part we are going to setup our Terraform root module and deploy an Azure Resource Group and Log Analytics Workspace ready for the rest of the lab. In this part we introduce out first Azure Verified Module, the `avm-res-log-analytics-workspace` module.
+In this part we are going to setup our Terraform root module and deploy an Azure Resource Group and Log Analytics Workspace ready for the rest of the lab. In this part we introduce our first Azure Verified Module, the `avm-res-log-analytics-workspace` module.
 
 The Log Analytics Workspace is used as the target for diagnostic settings for all our other resources. This is where we are sending our logging telemetry.
 
@@ -248,7 +248,7 @@ In this part we are going to add a virtual network and subnets to our Terraform 
 
 1. Run `terraform init` to install the AVM module for Virtual Networks and other new resources related to networking.
 1. Navigate to the `Source Control` tab in Visual Studio Code and review the changes to the files.
-1. Open the `avm.ip_addresses.tf` file and look at note the use of a utility module here, pay close attention to the `source` and `version` properties. A utility module is a helper module that doesn't deploy anything itself, but is used to calculate common values.
+1. Open the `avm.ip_addresses.tf` file and note the use of a utility module here, pay close attention to the `source` and `version` properties. A utility module is a helper module that doesn't deploy anything itself, but is used to calculate common values.
 1. Open the `avm.virtual-network.tf` file and look at each of the properties, paying close attention to the `source` and `version` properties.
 1. Examine the diagnostics settings in `locals.tf` and take note that this same setting will be applied to all of the AVM modules in the lab.
 1. In order to find more detail about AVM modules, you can navigate to their documentation. For example, you can find the documentation for the Virtual Network module [here](https://registry.terraform.io/modules/Azure/avm-res-network-virtualnetwork/azurerm/latest). From there you can navigate to the source code and see the module's implementation [here](https://github.com/Azure/terraform-azurerm-avm-res-network-virtualnetwork).
