@@ -95,7 +95,6 @@ In this part we are going to get a local copy of the lab files for use in the re
 
 1. Run `az login` to login to your Azure subscription.
 1. Run `az account show` to show the current subscription. Run `az account set --subscription <subscription-id>` to set the subscription if it is not the one you want to use.
-1. Set your subscription ID environment variable with `$env:ARM_SUBSCRIPTION_ID = $(az account show --query id -o tsv)`. This is required by the `azurerm` provider since v4.
 
 ### Part 1 - Base files and resources
 
