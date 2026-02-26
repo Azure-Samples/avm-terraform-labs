@@ -52,7 +52,7 @@ This sample deploys the following features:
   * Azure Terraform Extension for Visual Studio Code: [Install](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azureterraform)
   * HashiCorp Terraform Extension for Visual Studio Code: [Install](https://marketplace.visualstudio.com/items?itemName=HashiCorp.terraform)
 * Azure CLI: [Download](https://learn.microsoft.com/cli/azure/install-azure-cli-windows?tabs=azure-cli#install-or-update)
-* An Azure Subscription: [Free Account]([https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
+* An Azure Subscription: [Free Account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 
 ### Quickstart
 
